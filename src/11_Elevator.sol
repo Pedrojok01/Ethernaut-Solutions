@@ -6,20 +6,6 @@ pragma solidity 0.8.20;
  * @dev This elevator won't let you reach the top of your building. Right?
  */
 
-contract Elevator {
-    bool public top;
-    uint public floor;
-
-    function goTo(uint _floor) public {
-        Building building = Building(msg.sender);
-
-        if (!building.isLastFloor(_floor)) {
-            floor = _floor;
-            top = building.isLastFloor(floor);
-        }
-    }
-}
-
 contract Ethernaut_Elevator {
     bool private toogle;
     address private elevator = 0xbEd2A62C26eC563e2499c4b9e47383995C6912B3; // Replace with your Elevator instance

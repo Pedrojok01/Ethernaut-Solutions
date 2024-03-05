@@ -20,7 +20,7 @@ contract Ethernaut_Preservation {
 
     function setTime(uint _time) public {
         storedTime = _time;
-        owner = "Your address here";
+        owner = msg.sender;
     }
 }
 
