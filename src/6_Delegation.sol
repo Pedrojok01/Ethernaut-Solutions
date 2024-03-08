@@ -19,36 +19,3 @@ await web3.eth.sendTransaction({ from: "your wallet address", to: "0xb59aCD7131c
 
 🎉 Level completed! 🎉
 */
-
-/*////////////////////////////////////////////////////////////////
-                        CHALLENGE CONTRACT
-////////////////////////////////////////////////////////////////*/
-
-contract Delegate {
-    address public owner;
-
-    constructor(address _owner) {
-        owner = _owner;
-    }
-
-    function pwn() public {
-        owner = msg.sender;
-    }
-}
-
-contract Delegation {
-    address public owner;
-    Delegate delegate;
-
-    constructor(address _delegateAddress) {
-        delegate = Delegate(_delegateAddress);
-        owner = msg.sender;
-    }
-
-    fallback() external {
-        (bool result, ) = address(delegate).delegatecall(msg.data);
-        if (result) {
-            this;
-        }
-    }
-}
