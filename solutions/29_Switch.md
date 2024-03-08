@@ -1,39 +1,30 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+<div align="center">
 
-contract Switch {
-    bool public switchOn; // switch is off
-    bytes4 public offSelector = bytes4(keccak256("turnSwitchOff()"));
+<img src="../assets/levels/2-fallout.webp" width="600px"/>
+<br><br>
+<h1><strong>Ethernaut Level 2 - Fallout</strong></h1>
 
-    modifier onlyThis() {
-        require(msg.sender == address(this), "Only the contract can call this");
-        _;
-    }
+</div>
 
-    modifier onlyOff() {
-        // we use a complex data type to put in memory
-        bytes32[1] memory selector;
-        // check that the calldata at position 68 (location of _data)
-        assembly {
-            calldatacopy(selector, 68, 4) // grab function selector from calldata
-        }
-        require(
-            selector[0] == offSelector,
-            "Can only call the turnOffSwitch function"
-        );
-        _;
-    }
+## Table of Contents
 
-    function flipSwitch(bytes memory _data) public onlyOff {
-        (bool success, ) = address(this).call(_data);
-        require(success, "call failed :(");
-    }
+- [Table of Contents](#table-of-contents)
+- [Objectif](#objectif)
+- [The hack](#the-hack)
+- [Solution](#solution)
+- [Takeaway](#takeaway)
 
-    function turnSwitchOn() public onlyThis {
-        switchOn = true;
-    }
+## Objectif
 
-    function turnSwitchOff() public onlyThis {
-        switchOn = false;
-    }
-}
+<img src="../assets/requirements/2-fallout-requirements.webp" width="800px"/>
+
+## The hack
+
+## Solution
+
+## Takeaway
+
+<div align="center">
+<br>
+<h2>🎉 Level completed! 🎉</h2>
+</div>

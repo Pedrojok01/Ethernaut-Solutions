@@ -1,54 +1,48 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+<div align="center">
 
-contract Instance {
-    string public password;
-    uint8 public infoNum = 42;
-    string public theMethodName = "The method name is method7123949.";
-    bool private cleared = false;
+<img src="../assets/levels/0-hello.webp" width="600px"/>
+<br><br>
+<h1><strong>Ethernaut Level 0 - Hello Ethernaut</strong></h1>
 
-    // constructor
-    constructor(string memory _password) {
-        password = _password;
-    }
+</div>
 
-    function info() public pure returns (string memory) {
-        return "You will find what you need in info1().";
-    }
+## Objectif
 
-    function info1() public pure returns (string memory) {
-        return 'Try info2(), but with "hello" as a parameter.';
-    }
+No real objectif here except to get familiar with the Ethernaut challenges and the contract interactions. This level is a simple introduction to the Ethernaut game.
 
-    function info2(string memory param) public pure returns (string memory) {
-        if (
-            keccak256(abi.encodePacked(param)) ==
-            keccak256(abi.encodePacked("hello"))
-        ) {
-            return
-                "The property infoNum holds the number of the next info method to call.";
-        }
-        return "Wrong parameter.";
-    }
+## Solution
 
-    function info42() public pure returns (string memory) {
-        return "theMethodName is the name of the next method.";
-    }
+Just follow the instructions given in the browser's console and you will complete this level in no time. Or you can even cheat and jump directly to the last step...
 
-    function method7123949() public pure returns (string memory) {
-        return "If you know the password, submit it to authenticate().";
-    }
+```javascript
+await contract.info();
+=> You will find what you need in info1().
 
-    function authenticate(string memory passkey) public {
-        if (
-            keccak256(abi.encodePacked(passkey)) ==
-            keccak256(abi.encodePacked(password))
-        ) {
-            cleared = true;
-        }
-    }
+await contract.info1();
+=> Try info2(), but with "hello" as a parameter.
 
-    function getCleared() public view returns (bool) {
-        return cleared;
-    }
-}
+await contract.info2("hello");
+=> The property infoNum holds the number of the next info method to call.
+
+await contract.infoNum();
+=> 42
+
+await contract.info42();
+=> theMethodName is the name of the next method.
+
+await contract.theMethodName();
+=> The method name is method7123949.
+
+await contract.method7123949();
+=> If you know the password, submit it to authenticate().
+
+await contract.password();
+=> "ethernaut0"
+
+await contract.authenticate("ethernaut0");
+```
+
+<div align="center">
+<br>
+<h2>🎉 Level completed! 🎉</h2>
+</div>

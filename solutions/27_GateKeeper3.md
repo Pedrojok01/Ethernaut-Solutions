@@ -1,106 +1,30 @@
-// SPDX-License-Identifier: MIT
-pragma solidity >=0.8.0 <0.9.0;
+<div align="center">
 
-import {Address} from "../helpers/Address.sol";
+<img src="../assets/levels/2-fallout.webp" width="600px"/>
+<br><br>
+<h1><strong>Ethernaut Level 2 - Fallout</strong></h1>
 
-contract GoodSamaritan {
-    Wallet public wallet;
-    Coin public coin;
+</div>
 
-    constructor() {
-        wallet = new Wallet();
-        coin = new Coin(address(wallet));
+## Table of Contents
 
-        wallet.setCoin(coin);
-    }
+- [Table of Contents](#table-of-contents)
+- [Objectif](#objectif)
+- [The hack](#the-hack)
+- [Solution](#solution)
+- [Takeaway](#takeaway)
 
-    function requestDonation() external returns (bool enoughBalance) {
-        // donate 10 coins to requester
-        try wallet.donate10(msg.sender) {
-            return true;
-        } catch (bytes memory err) {
-            if (
-                keccak256(abi.encodeWithSignature("NotEnoughBalance()")) ==
-                keccak256(err)
-            ) {
-                // send the coins left
-                wallet.transferRemainder(msg.sender);
-                return false;
-            }
-        }
-    }
-}
+## Objectif
 
-contract Coin {
-    using Address for address;
+<img src="../assets/requirements/2-fallout-requirements.webp" width="800px"/>
 
-    mapping(address => uint256) public balances;
+## The hack
 
-    error InsufficientBalance(uint256 current, uint256 required);
+## Solution
 
-    constructor(address wallet_) {
-        // one million coins for Good Samaritan initially
-        balances[wallet_] = 10 ** 6;
-    }
+## Takeaway
 
-    function transfer(address dest_, uint256 amount_) external {
-        uint256 currentBalance = balances[msg.sender];
-
-        // transfer only occurs if balance is enough
-        if (amount_ <= currentBalance) {
-            balances[msg.sender] -= amount_;
-            balances[dest_] += amount_;
-
-            if (dest_.isContract()) {
-                // notify contract
-                INotifyable(dest_).notify(amount_);
-            }
-        } else {
-            revert InsufficientBalance(currentBalance, amount_);
-        }
-    }
-}
-
-contract Wallet {
-    // The owner of the wallet instance
-    address public owner;
-
-    Coin public coin;
-
-    error OnlyOwner();
-    error NotEnoughBalance();
-
-    modifier onlyOwner() {
-        if (msg.sender != owner) {
-            revert OnlyOwner();
-        }
-        _;
-    }
-
-    constructor() {
-        owner = msg.sender;
-    }
-
-    function donate10(address dest_) external onlyOwner {
-        // check balance left
-        if (coin.balances(address(this)) < 10) {
-            revert NotEnoughBalance();
-        } else {
-            // donate 10 coins
-            coin.transfer(dest_, 10);
-        }
-    }
-
-    function transferRemainder(address dest_) external onlyOwner {
-        // transfer balance left
-        coin.transfer(dest_, coin.balances(address(this)));
-    }
-
-    function setCoin(Coin coin_) external onlyOwner {
-        coin = coin_;
-    }
-}
-
-interface INotifyable {
-    function notify(uint256 amount) external;
-}
+<div align="center">
+<br>
+<h2>🎉 Level completed! 🎉</h2>
+</div>

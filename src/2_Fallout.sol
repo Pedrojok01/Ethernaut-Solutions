@@ -7,8 +7,7 @@ pragma solidity ^0.6.0;
  */
 
 /*
-The Fal1out() function doesn't have any access control. Anyone can call it and take ownership of the contract.
-Simply call the Fal1out() function from the browser console.
+1. Call the Fal1out() function from the browser console:
 await contract.Fal1out();
 
 

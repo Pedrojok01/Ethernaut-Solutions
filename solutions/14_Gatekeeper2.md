@@ -1,36 +1,30 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+<div align="center">
 
-contract GatekeeperTwo {
-    address public entrant;
+<img src="../assets/levels/2-fallout.webp" width="600px"/>
+<br><br>
+<h1><strong>Ethernaut Level 2 - Fallout</strong></h1>
 
-    modifier gateOne() {
-        require(msg.sender != tx.origin);
-        _;
-    }
+</div>
 
-    modifier gateTwo() {
-        uint x;
-        assembly {
-            x := extcodesize(caller())
-        }
-        require(x == 0);
-        _;
-    }
+## Table of Contents
 
-    modifier gateThree(bytes8 _gateKey) {
-        require(
-            uint64(bytes8(keccak256(abi.encodePacked(msg.sender)))) ^
-                uint64(_gateKey) ==
-                type(uint64).max
-        );
-        _;
-    }
+- [Table of Contents](#table-of-contents)
+- [Objectif](#objectif)
+- [The hack](#the-hack)
+- [Solution](#solution)
+- [Takeaway](#takeaway)
 
-    function enter(
-        bytes8 _gateKey
-    ) public gateOne gateTwo gateThree(_gateKey) returns (bool) {
-        entrant = tx.origin;
-        return true;
-    }
-}
+## Objectif
+
+<img src="../assets/requirements/2-fallout-requirements.webp" width="800px"/>
+
+## The hack
+
+## Solution
+
+## Takeaway
+
+<div align="center">
+<br>
+<h2>🎉 Level completed! 🎉</h2>
+</div>

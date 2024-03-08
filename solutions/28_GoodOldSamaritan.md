@@ -1,79 +1,30 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+<div align="center">
 
-contract SimpleTrick {
-    GatekeeperThree public target;
-    address public trick;
-    uint private password = block.timestamp;
+<img src="../assets/levels/2-fallout.webp" width="600px"/>
+<br><br>
+<h1><strong>Ethernaut Level 2 - Fallout</strong></h1>
 
-    constructor(address payable _target) {
-        target = GatekeeperThree(_target);
-    }
+</div>
 
-    function checkPassword(uint _password) public returns (bool) {
-        if (_password == password) {
-            return true;
-        }
-        password = block.timestamp;
-        return false;
-    }
+## Table of Contents
 
-    function trickInit() public {
-        trick = address(this);
-    }
+- [Table of Contents](#table-of-contents)
+- [Objectif](#objectif)
+- [The hack](#the-hack)
+- [Solution](#solution)
+- [Takeaway](#takeaway)
 
-    function trickyTrick() public {
-        if (address(this) == msg.sender && address(this) != trick) {
-            target.getAllowance(password);
-        }
-    }
-}
+## Objectif
 
-contract GatekeeperThree {
-    address public owner;
-    address public entrant;
-    bool public allowEntrance;
+<img src="../assets/requirements/2-fallout-requirements.webp" width="800px"/>
 
-    SimpleTrick public trick;
+## The hack
 
-    function construct0r() public {
-        owner = msg.sender;
-    }
+## Solution
 
-    modifier gateOne() {
-        require(msg.sender == owner);
-        require(tx.origin != owner);
-        _;
-    }
+## Takeaway
 
-    modifier gateTwo() {
-        require(allowEntrance == true);
-        _;
-    }
-
-    modifier gateThree() {
-        if (
-            address(this).balance > 0.001 ether &&
-            payable(owner).send(0.001 ether) == false
-        ) {
-            _;
-        }
-    }
-
-    function getAllowance(uint _password) public {
-        if (trick.checkPassword(_password)) {
-            allowEntrance = true;
-        }
-    }
-
-    function createTrick() public {
-        trick = new SimpleTrick(payable(address(this)));
-        trick.trickInit();
-    }
-
-    function enter() public gateOne gateTwo gateThree {
-        entrant = tx.origin;
-    }
-
-    receive() external payable {}
-}
+<div align="center">
+<br>
+<h2>🎉 Level completed! 🎉</h2>
+</div>

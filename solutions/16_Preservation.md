@@ -1,45 +1,30 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+<div align="center">
 
-contract Preservation {
-    // public library contracts
-    address public timeZone1Library;
-    address public timeZone2Library;
-    address public owner;
-    uint storedTime;
-    // Sets the function signature for delegatecall
-    bytes4 constant setTimeSignature = bytes4(keccak256("setTime(uint256)"));
+<img src="../assets/levels/2-fallout.webp" width="600px"/>
+<br><br>
+<h1><strong>Ethernaut Level 2 - Fallout</strong></h1>
 
-    constructor(
-        address _timeZone1LibraryAddress,
-        address _timeZone2LibraryAddress
-    ) {
-        timeZone1Library = _timeZone1LibraryAddress;
-        timeZone2Library = _timeZone2LibraryAddress;
-        owner = msg.sender;
-    }
+</div>
 
-    // set the time for timezone 1
-    function setFirstTime(uint _timeStamp) public {
-        timeZone1Library.delegatecall(
-            abi.encodePacked(setTimeSignature, _timeStamp)
-        );
-    }
+## Table of Contents
 
-    // set the time for timezone 2
-    function setSecondTime(uint _timeStamp) public {
-        timeZone2Library.delegatecall(
-            abi.encodePacked(setTimeSignature, _timeStamp)
-        );
-    }
-}
+- [Table of Contents](#table-of-contents)
+- [Objectif](#objectif)
+- [The hack](#the-hack)
+- [Solution](#solution)
+- [Takeaway](#takeaway)
 
-// Simple library contract to set the time
-contract LibraryContract {
-    // stores a timestamp
-    uint storedTime;
+## Objectif
 
-    function setTime(uint _time) public {
-        storedTime = _time;
-    }
-}
+<img src="../assets/requirements/2-fallout-requirements.webp" width="800px"/>
+
+## The hack
+
+## Solution
+
+## Takeaway
+
+<div align="center">
+<br>
+<h2>🎉 Level completed! 🎉</h2>
+</div>

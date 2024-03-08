@@ -1,24 +1,30 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+<div align="center">
 
-contract MagicNum {
-    address public solver;
+<img src="../assets/levels/2-fallout.webp" width="600px"/>
+<br><br>
+<h1><strong>Ethernaut Level 2 - Fallout</strong></h1>
 
-    constructor() {}
+</div>
 
-    function setSolver(address _solver) public {
-        solver = _solver;
-    }
+## Table of Contents
 
-    /*
-    ____________/\\\_______/\\\\\\\\\_____        
-     __________/\\\\\_____/\\\///////\\\___       
-      ________/\\\/\\\____\///______\//\\\__      
-       ______/\\\/\/\\\______________/\\\/___     
-        ____/\\\/__\/\\\___________/\\\//_____    
-         __/\\\\\\\\\\\\\\\\_____/\\\//________   
-          _\///////////\\\//____/\\\/___________  
-           ___________\/\\\_____/\\\\\\\\\\\\\\\_ 
-            ___________\///_____\///////////////__
-  */
-}
+- [Table of Contents](#table-of-contents)
+- [Objectif](#objectif)
+- [The hack](#the-hack)
+- [Solution](#solution)
+- [Takeaway](#takeaway)
+
+## Objectif
+
+<img src="../assets/requirements/2-fallout-requirements.webp" width="800px"/>
+
+## The hack
+
+## Solution
+
+## Takeaway
+
+<div align="center">
+<br>
+<h2>🎉 Level completed! 🎉</h2>
+</div>

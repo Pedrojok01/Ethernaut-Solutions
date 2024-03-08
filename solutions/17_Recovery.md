@@ -1,37 +1,30 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+<div align="center">
 
-contract Recovery {
-    //generate tokens
-    function generateToken(string memory _name, uint256 _initialSupply) public {
-        new SimpleToken(_name, msg.sender, _initialSupply);
-    }
-}
+<img src="../assets/levels/2-fallout.webp" width="600px"/>
+<br><br>
+<h1><strong>Ethernaut Level 2 - Fallout</strong></h1>
 
-contract SimpleToken {
-    string public name;
-    mapping(address => uint) public balances;
+</div>
 
-    // constructor
-    constructor(string memory _name, address _creator, uint256 _initialSupply) {
-        name = _name;
-        balances[_creator] = _initialSupply;
-    }
+## Table of Contents
 
-    // collect ether in return for tokens
-    receive() external payable {
-        balances[msg.sender] = msg.value * 10;
-    }
+- [Table of Contents](#table-of-contents)
+- [Objectif](#objectif)
+- [The hack](#the-hack)
+- [Solution](#solution)
+- [Takeaway](#takeaway)
 
-    // allow transfers of tokens
-    function transfer(address _to, uint _amount) public {
-        require(balances[msg.sender] >= _amount);
-        balances[msg.sender] = balances[msg.sender] - _amount;
-        balances[_to] = _amount;
-    }
+## Objectif
 
-    // clean up after ourselves
-    function destroy(address payable _to) public {
-        selfdestruct(_to);
-    }
-}
+<img src="../assets/requirements/2-fallout-requirements.webp" width="800px"/>
+
+## The hack
+
+## Solution
+
+## Takeaway
+
+<div align="center">
+<br>
+<h2>🎉 Level completed! 🎉</h2>
+</div>

