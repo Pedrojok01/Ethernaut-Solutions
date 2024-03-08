@@ -1,4 +1,22 @@
-## Level 12 - Privacy
+<div align="center">
+
+<img src="../assets/levels/12-privacy.webp" width="600px"/>
+<br><br>
+<h1><strong>Ethernaut Level 12 - Privacy</strong></h1>
+
+</div>
+
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Objectif](#objectif)
+- [Solution](#solution)
+- [Takeaway](#takeaway)
+- [References](#references)
+
+## Objectif
+
+<img src="../assets/requirements/12-privacy-requirements.webp" width="800px"/>
 
 Requires a good understanding of how storage works in solidity, and how to access it.
 

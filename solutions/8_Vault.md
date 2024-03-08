@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="../assets/levels/2-fallout.webp" width="600px"/>
+<img src="../assets/levels/8-vault.webp" width="600px"/>
 <br><br>
-<h1><strong>Ethernaut Level 2 - Fallout</strong></h1>
+<h1><strong>Ethernaut Level 8 - Vault</strong></h1>
 
 </div>
 
@@ -11,18 +11,15 @@
 - [Table of Contents](#table-of-contents)
 - [Objectif](#objectif)
 - [The hack](#the-hack)
-- [Level 8 - Vault](#level-8---vault)
 - [Solution](#solution)
 - [Takeaway](#takeaway)
 - [References](#references)
 
 ## Objectif
 
-<img src="../assets/requirements/2-fallout-requirements.webp" width="800px"/>
+<img src="../assets/requirements/8-vault-requirements.webp" width="800px"/>
 
 ## The hack
-
-## Level 8 - Vault
 
 It requires an understanding of how storage works in solidity (usage of 256 bit sized slots) and the JSON RPC function `eth_getStorageAt`
 

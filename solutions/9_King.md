@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="../assets/levels/2-fallout.webp" width="600px"/>
+<img src="../assets/levels/9-king.webp" width="600px"/>
 <br><br>
-<h1><strong>Ethernaut Level 2 - Fallout</strong></h1>
+<h1><strong>Ethernaut Level 9 - King</strong></h1>
 
 </div>
 
@@ -11,18 +11,15 @@
 - [Table of Contents](#table-of-contents)
 - [Objectif](#objectif)
 - [The hack](#the-hack)
-- [Level 9 - King](#level-9---king)
 - [Solution](#solution)
 - [Takeaway](#takeaway)
 - [References](#references)
 
 ## Objectif
 
-<img src="../assets/requirements/2-fallout-requirements.webp" width="800px"/>
+<img src="../assets/requirements/9-king-requirements.webp" width="800px"/>
 
 ## The hack
-
-## Level 9 - King
 
 It requires an understanding of how `transfer` works in solidity, and when and how to use it.
 

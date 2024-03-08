@@ -12,8 +12,8 @@
 
 ## The hack
 
-Everything in the EVM is deterministic. This means that entropy doesn't exist on-chain (except using third party solution like [Chainlink VRF](https://docs.chain.link/vrf/)).
-The solution used in the `CoinFlip` contract is only pseudo-random. So we can predict the next flip by using the same logic as the contract.
+Everything in the EVM is deterministic. This means that entropy doesn't exist natively on-chain (you can use third party solutions like [Chainlink VRF](https://docs.chain.link/vrf/)).
+The logic used in the `CoinFlip` contract is only pseudo-random. So we can predict the next flip by using the same logic as the one in the contract.
 Once done, we can call the `flip` function with the predicted value and repeat this 10 times to win the level.
 
 ## Solution
@@ -47,9 +47,9 @@ contract Unflip {
 
 ## Takeaway
 
-- Entropy is not trivial on the blockchain
-- Global variables should not be used to generate "randomness"
-- Great read on this: https://github.com/ethereumbook/ethereumbook/blob/develop/09smart-contracts-security.asciidoc#entropy-illusion
+- Entropy doesn't exist on-chain
+- Pseudo randomness can help for development but not for security
+- To read: https://github.com/ethereumbook/ethereumbook/blob/develop/09smart-contracts-security.asciidoc#entropy-illusion
 
 <div align="center">
 <br>

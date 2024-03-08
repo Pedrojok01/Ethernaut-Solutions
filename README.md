@@ -25,37 +25,39 @@ await contract.authenticate("ethernaut0")
 ```
 
 ```
-FORK_URL=https://eth-goerli.g.alchemy.com/v2/{API_KEY}
+FORK_URL=https://eth-sepolia.g.alchemy.com/v2/{API_KEY}
 forge test -vvvv --fork-url $FORK_URL --match-path test/13_GateKeeperOne.test.sol
 ```
 
-## Levels
+## Solutions
 
-- [x] Lvl 1 Fallback function
-- [x] Lvl 2 Fallout
-- [x] Lvl 3 Coin Flip
-- [x] Lvl 4 Telephone
-- [x] Lvl 5 Token
-- [x] Lvl 6 Delegation
-- [x] Lvl 7 Force
-- [x] Lvl 8 Vault
-- [x] Lvl 9 King
-- [x] Lvl 10 Re-entrancy
-- [x] Lvl 11 Elevator
-- [x] Lvl 12 Privacy
-- [x] Lvl 13 Gatekeeper 1
-- [x] Lvl 14 Gatekeeper 2
-- [x] Lvl 15 Naught Coin
-- [x] Lvl 16 Preservation
-- [x] Lvl 17 Recovery
-- [x] Lvl 18 MagicNumber
-- [x] Lvl 19 Alien Codex
-- [x] Lvl 20 Denial
-- [x] Lvl 21 Shop
-- [x] Lvl 22 Dex
-- [x] Lvl 23 Dex Two
-- [x] Lvl 24 Puzzle Wallet
-- [ ] Lvl 25 Motorbike (unbeatable since Dencun upgrade, issue with selfdestruct new behavior, see EIP6780)
-- [x] Lvl 26 DoubleEntryPoint
-- [x] Lvl 27 Good Samaritan
-- [x] Lvl 28 Switch
+- [x] [Lvl 0 Hello Ethernaut](./solutions/0_HelloEthernaut.md)
+- [x] [Lvl 1 Fallback](./solutions/1_Fallback.md)
+- [x] [Lvl 2 Fal1out](./solutions/2_Fal1out.md)
+- [x] [Lvl 3 Coin Flip](./solutions/3_CoinFlip.md)
+- [x] [Lvl 4 Telephone](./solutions/4_Telephone.md)
+- [x] [Lvl 5 Token](./solutions/5_Token.md)
+- [x] [Lvl 6 Delegation](./solutions/6_Delegation.md)
+- [x] [Lvl 7 Force](./solutions/7_Force.md)
+- [x] [Lvl 8 Vault](./solutions/8_Vault.md)
+- [x] [Lvl 9 King](./solutions/9_King.md)
+- [x] [Lvl 10 Re-entrancy](./solutions/10_Reentrancy.md)
+- [x] [Lvl 11 Elevator](./solutions/11_Elevator.md)
+- [x] [Lvl 12 Privacy](./solutions/12_Privacy.md)
+- [x] [Lvl 13 Gate Keeper 1](./solutions/13_GateKeeperOne.md)
+- [x] [Lvl 14 Gate Keeper 2](./solutions/14_GateKeeperTwo.md)
+- [x] [Lvl 15 Naught Coin](./solutions/15_NaughtCoin.md)
+- [x] [Lvl 16 Preservation](./solutions/16_Preservation.md)
+- [x] [Lvl 17 Recovery](./solutions/17_Recovery.md)
+- [x] [Lvl 18 MagicNumber](./solutions/18_MagicNumber.md)
+- [x] [Lvl 19 Alien Codex](./solutions/19_AlienCodex.md)
+- [x] [Lvl 20 Denial](./solutions/20_Denial.md)
+- [x] [Lvl 21 Shop](./solutions/21_Shop.md)
+- [x] [Lvl 22 Dex](./solutions/22_Dex.md)
+- [x] [Lvl 23 Dex Two](./solutions/23_DexTwo.md)
+- [x] [Lvl 24 Puzzle Wallet](./solutions/24_PuzzleWallet.md)
+- [ ] [Lvl 25 Motorbike](./solutions/25_Motorbike.md) (unbeatable since Dencun upgrade, issue with selfdestruct new behavior, see EIP6780)
+- [x] [Lvl 26 Double Entry Point](./solutions/26_DoubleEntryPoint.md)
+- [x] [Lvl 27 Gate Keeper 3](./solutions/27_GateKeeperthree.md)
+- [x] [Lvl 28 Good Samaritan](./solutions/28_GoodSamaritan.md)
+- [x] [Lvl 29 Switch](./solutions/29_Switch.md)

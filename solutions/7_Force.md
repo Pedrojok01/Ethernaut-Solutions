@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="../assets/levels/2-fallout.webp" width="600px"/>
+<img src="../assets/levels/7-force.webp" width="600px"/>
 <br><br>
-<h1><strong>Ethernaut Level 2 - Fallout</strong></h1>
+<h1><strong>Ethernaut Level 7 - Force</strong></h1>
 
 </div>
 
@@ -11,17 +11,14 @@
 - [Table of Contents](#table-of-contents)
 - [Objectif](#objectif)
 - [The hack](#the-hack)
-  - [Level 7 - Force](#level-7---force)
 - [Solution](#solution)
 - [Takeaway](#takeaway)
 
 ## Objectif
 
-<img src="../assets/requirements/2-fallout-requirements.webp" width="800px"/>
+<img src="../assets/requirements/7-force-requirements.webp" width="800px"/>
 
 ## The hack
-
-### Level 7 - Force
 
 It requires the use of `selfdestruct` - which is one of the ways to forcibly send ether to a contract
 

@@ -1,15 +1,14 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.6.0;
+pragma solidity 0.8.24;
 
-import "forge-std/Script.sol";
+import {Script} from "forge-std/Script.sol";
 
 contract POC is Script {
+    function run() external payable {
+        uint256 deployer = vm.envUint("PRIVATE_KEY");
 
-    function run() external payable{
-        vm.startBroadcast();
-        selfdestruct(0x351a6b30D82Bd32E696dFF3C2f193F8a251bB598);
+        vm.startBroadcast(deployer);
+        selfdestruct(0xD0350fE26d963C9B0974Cab2b5a55D72B02566a3);
         vm.stopBroadcast();
     }
 }
-
-//check src folder for solution

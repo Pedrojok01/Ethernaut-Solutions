@@ -1,9 +1,9 @@
-pragma solidity ^0.8.20;
+pragma solidity 0.8.24;
 
 import "forge-std/Test.sol";
 import "forge-std/console.sol";
 
-import {Ethernaut_GateKeeperOne} from "src/13_Gatekeeper1.sol";
+import {Ethernaut_GateKeeperOne} from "src/13_GatekeeperOne.sol";
 
 contract TestGateKeeperOne is Test {
     Ethernaut_GateKeeperOne private ethernaut_GateKeeperOne;

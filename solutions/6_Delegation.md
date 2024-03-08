@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="../assets/levels/2-fallout.webp" width="600px"/>
+<img src="../assets/levels/6-delegation.webp" width="600px"/>
 <br><br>
-<h1><strong>Ethernaut Level 2 - Fallout</strong></h1>
+<h1><strong>Ethernaut Level 6 - Delegation</strong></h1>
 
 </div>
 
@@ -11,17 +11,14 @@
 - [Table of Contents](#table-of-contents)
 - [Objectif](#objectif)
 - [The hack](#the-hack)
-- [Level 6 - Delegate](#level-6---delegate)
 - [Solution](#solution)
 - [Takeaway](#takeaway)
 
 ## Objectif
 
-<img src="../assets/requirements/2-fallout-requirements.webp" width="800px"/>
+<img src="../assets/requirements/6-delegation-requirements.webp" width="800px"/>
 
 ## The hack
-
-## Level 6 - Delegate
 
 Requires taking advantage of the delegate call being used in the Delegation contract
 

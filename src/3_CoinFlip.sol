@@ -10,8 +10,7 @@ interface ICoinFlip {
     function flip(bool) external returns (bool);
 }
 
-// Deploy the Unflip contract on Remix and call the attack() function 10 times to win the level.
-// The logic mimic the CoinFlip.sol contract to predict the outcome of the coin flip.
+// Deploy the Unflip contract and call the attack() function 10 times to win the level.
 contract Unflip {
     address constant coinflip = 0xb721D5C58B4B2d7Fc82084541C639A6b6E3CBf73; // Replace with your CoinFlip instance
     uint256 FACTOR =

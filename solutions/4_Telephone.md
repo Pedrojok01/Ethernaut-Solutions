@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="../assets/levels/2-fallout.webp" width="600px"/>
+<img src="../assets/levels/4-telephone.webp" width="600px"/>
 <br><br>
-<h1><strong>Ethernaut Level 2 - Fallout</strong></h1>
+<h1><strong>Ethernaut Level 4 - Telephone</strong></h1>
 
 </div>
 
@@ -11,17 +11,14 @@
 - [Table of Contents](#table-of-contents)
 - [Objectif](#objectif)
 - [The hack](#the-hack)
-- [Level 4 - Telephone](#level-4---telephone)
 - [Solution](#solution)
 - [Takeaway](#takeaway)
 
 ## Objectif
 
-<img src="../assets/requirements/2-fallout-requirements.webp" width="800px"/>
+<img src="../assets/requirements/4-telephone-requirements.webp" width="800px"/>
 
 ## The hack
-
-## Level 4 - Telephone
 
 This is a simple one, but exposes the player to an important attact vector - "tx.origin" phishing
 Writeup on phishing attacks: https://blog.ethereum.org/2016/06/24/security-alert-smart-contract-wallets-created-in-frontier-are-vulnerable-to-phishing-attacks
