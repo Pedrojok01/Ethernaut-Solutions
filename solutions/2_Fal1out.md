@@ -20,31 +20,31 @@
 
 ## The hack
 
-Unlike a normal function that can be called anytime, a constructor is only executed once during the creation of the contract. In solidity version prior to `0.8.0`, a constructor was defined by naming it exactly the same as your contract's name.
+Unlike a normal function that can be called anytime, a constructor is only executed once during the creation of the contract. In solidity versions before `0.8.0`, a constructor was defined by naming it the same as your contract's name.
 
 ```javascript
 pragma solidity ^0.6.0;
 
 contract Foo {
-    // This is a constructor
+    // This is a constructor, same name as the contract
     function Foo() public payable {}
 
     // This is a function
-    function Bar() public payable {}
+    function foo() public payable {}
 }
 ```
 
-Unfortunatly here, the typo in the `Fal1out()` function makes it a normal function, instead of a constructor. Because of that, `Fal1out()` is a public function that anyone can call to take ownership of the contract.
+Unfortunately, the typo in the `Fal1out()` function converts it to a normal function instead of a constructor. Because of that, `Fal1out()` is a public function that anyone can call to take ownership of the contract.
 
 ```javascript
 /* constructor */
   function Fal1out() public payable {
-    owner = msg.sender;
-    allocations[owner] = msg.value;
+      owner = msg.sender;
+      allocations[owner] = msg.value;
   }
 ```
 
-The `Fal1out` function should have been named as `Fallout`.
+The `Fal1out` function should have been named `Fallout`.
 
 ## Solution
 

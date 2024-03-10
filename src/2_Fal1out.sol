@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.6.0;
+pragma solidity ^0.8.20;
 
 /**
  * @title 2. FALLOUT
@@ -7,9 +7,6 @@ pragma solidity ^0.6.0;
  */
 
 /*
-1. Call the Fal1out() function from the browser console:
+Call the Fal1out() function from the browser console:
 await contract.Fal1out();
-
-
-🎉 Level completed! 🎉
 */

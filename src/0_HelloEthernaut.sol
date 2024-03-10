@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.24;
+pragma solidity ^0.8.20;
 
 /**
  * @title 0. HELLO ETHERNAUT
@@ -34,7 +34,4 @@ await contract.password();
 => "ethernaut0"
 
 await contract.authenticate("ethernaut0");
-
-
-🎉 Level completed! 🎉
 */

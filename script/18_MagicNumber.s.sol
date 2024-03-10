@@ -1,11 +1,14 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.24;
+pragma solidity ^0.8.20;
 
 import {Script} from "forge-std/Script.sol";
-import "../challenges/Ilevel18.sol";
 
-contract POC is Script {
-    MagicNum level18 = MagicNum(0x636f1d8922D192D9F3d894C89EA83f4d34921e1E);
+interface IMagicNum {
+    function setSolver(address _solver) external;
+}
+
+contract PoC is Script {
+    IMagicNum level18 = IMagicNum(0x636f1d8922D192D9F3d894C89EA83f4d34921e1E);
 
     function run() external {
         uint256 deployer = vm.envUint("PRIVATE_KEY");

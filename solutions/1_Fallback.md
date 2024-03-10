@@ -29,11 +29,11 @@ The contract has a `receive` function that is called when the contract receives 
   }
 ```
 
-Now, we just have to figure how to pass the `require` statement in the `receive` function. The first part is fairly simple, we just have to send any amount of ETH. The second part requires us to `contribute()` first so our balance is greater than 0. That's it. We are the new owner of the contract.
+Now, we just have to figure out how to pass the `require` statement in the `receive` function. The first part is fairly simple, we just have to send any amount of ETH. The second part requires us to `contribute()` first so our balance is greater than 0. That's it. We are the new owner of the contract.
 
 ## Solution
 
-1. Start by contributing to fullfill the require statement in the `receive()` function
+1. Start by contributing to fulfill the `require` statement in the `receive()` function
 2. Send some eth to the contract directly to trigger the `receive()` function
 3. Withdraw all the funds
 

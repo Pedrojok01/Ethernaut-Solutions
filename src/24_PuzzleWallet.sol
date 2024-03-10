@@ -30,11 +30,12 @@ interface IPuzzleWallet {
 // We need to override maxBalance with setMaxBalance() in the puzzleWallet contract.
 // Because of a storage collision, doing this will override the proxy contract's admin.
 // !!! DON'T FORGET TO SEND 0.001 ETH WHEN DEPLIYING THE CONTRACT !!! (or use the forgetToDeposit function...)
-contract Ethernaut_PuzzleWallet {
-    IPuzzleWallet private puzzleWallet =
-        IPuzzleWallet(0xB8759fFB6d451D0a9C9404d1cB0D1B8D75e4F5b0); // Replace with your PuzzleWallet instance
+contract Puzzled {
+    IPuzzleWallet private immutable puzzleWallet;
 
-    constructor() payable {}
+    constructor(address _puzzleWallet) payable {
+        puzzleWallet = IPuzzleWallet(_puzzleWallet);
+    }
 
     function forgetToDeposit() public payable {
         (bool success, ) = address(this).call{value: 0.002 ether}("");
@@ -76,5 +77,3 @@ contract Ethernaut_PuzzleWallet {
         selfdestruct(payable(msg.sender));
     }
 }
-
-// 🎉 Level completed! 🎉

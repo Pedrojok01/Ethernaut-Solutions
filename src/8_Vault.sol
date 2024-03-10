@@ -6,15 +6,12 @@ pragma solidity ^0.8.20;
  * @dev Unlock the contract to beat the level.
  */
 
+// On-chain, a private variable is not private and can be publicly accessed.
+
 /*
-A private variable is not private on-chain, and can be publicly accessed
+1. Read the storage of the contract at slot[1] to find the password:
+const password = await web3.eth.getStorageAt(instance, 1);
 
-1. Read the storage of the contract at index 1 to find the password
-const password = await web3.eth.getStorageAt("0x5E0bc315bDe04a2E24E00335976dC823E6214213", 1) 
-
-2. Call the unlock function with the password to complete the level
+2. Call the unlock function with the password to complete the level:
 await contract.unlock(password);
-
-
-🎉 Level completed! 🎉
 */

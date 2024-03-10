@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.24;
+pragma solidity ^0.8.20;
 
 /**
  * @title 1. FALLBACK
@@ -15,7 +15,4 @@ await contract.sendTransaction({ value: toWei("0.00001") });
 
 3. Withdraw the funds
 await contract.withdraw();
-
-
-🎉 Level completed! 🎉
 */

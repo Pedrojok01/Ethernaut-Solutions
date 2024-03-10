@@ -27,7 +27,4 @@ const key = contents1.substring(0, 34);
 
 3. Unlock the contract
 await contract.unlock(key);
-
-🎉 Level completed! 🎉
-
 */

