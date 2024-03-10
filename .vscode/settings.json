@@ -1,9 +1,0 @@
-{
-    "solidity.compileUsingRemoteVersion": "v^0.8.20+commit.e11b9ed9",
-    "grammarly.selectors": [
-        {
-            "language": "markdown",
-            "scheme": "file"
-        }
-    ]
-}
