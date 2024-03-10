@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 import {Script} from "forge-std/Script.sol";
-import {FallenKing} from "../src/9_King.sol";
+import {FallenKing} from "../src/09_King.sol";
 
 contract PoC is Script {
     address payable immutable king =

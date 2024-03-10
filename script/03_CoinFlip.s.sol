@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 import {Script, console2} from "forge-std/Script.sol";
-import {Unflip} from "../src/3_CoinFlip.sol";
+import {Unflip} from "../src/03_CoinFlip.sol";
 
 interface ICoinFlip {
     function consecutiveWins() external view returns (uint256);

@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 import {Script, console2} from "forge-std/Script.sol";
-import {MissedCall} from "../src/4_Telephone.sol";
+import {MissedCall} from "../src/04_Telephone.sol";
 
 interface ITelephone {
     function owner() external view returns (address);

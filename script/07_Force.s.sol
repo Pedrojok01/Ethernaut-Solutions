@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 import {Script} from "forge-std/Script.sol";
-import {Kamikaze} from "../src/7_Force.sol";
+import {Kamikaze} from "../src/07_Force.sol";
 
 contract PoC is Script {
     address payable immutable force =
