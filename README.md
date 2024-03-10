@@ -14,7 +14,8 @@ This repository contains the solutions for the [Ethernaut CTF challenges](https:
 - The `challenges` folder contains all the initial Ethernaut smart contracts.
 - The `solutions` folder contains the explanations to understand how to beat each level.
 - The `src` folder contains the solutions for each level (solidity and/or scripts in the browser console).
-- The `helpers` folder contains some older openzeppelin contracts that are needed to compile the challenges.
+- The `script` folder contains the scripts to deploy the solutions contained in the `src` folder.
+- The `helpers` folder contains some older OpenZeppelin contracts that are needed to compile the challenges.
 - The `test` folder contains tests for some levels.
 
 ## Tutorial
