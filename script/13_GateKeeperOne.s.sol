@@ -8,6 +8,10 @@ interface IGateKeeperOne {
     function entrant() external view returns (address);
 }
 
+/**
+ * @notice Use the test to find the gas value that will pass the gatekeeper
+ */
+
 contract PoC is Script {
     address private immutable gateOne =
         0x3D47f75FdB928E3DC0206DC0Dc3470fF79A43fE2; // Replace with your GateKeeperOne instance
