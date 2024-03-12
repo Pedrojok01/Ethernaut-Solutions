@@ -23,7 +23,7 @@ contract PoC is Script {
         uint256 deployer = vm.envUint("PRIVATE_KEY");
         vm.startBroadcast(deployer);
 
-        address futurCoinOwner = "your wallet address here";
+        address futurCoinOwner = 0x1234567890AbcdEF1234567890aBcdef12345678;
 
         uint balance = naughty.balanceOf(futurCoinOwner);
         console2.log("Current balance: ", balance);

