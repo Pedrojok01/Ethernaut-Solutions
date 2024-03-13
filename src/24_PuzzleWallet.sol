@@ -14,8 +14,6 @@ interface IPuzzleWallet {
 
     function addToWhitelist(address addr) external;
 
-    function deposit() external payable;
-
     function multicall(bytes[] calldata data) external payable;
 
     function execute(
@@ -38,7 +36,7 @@ contract Puzzled {
     }
 
     function forgetToDeposit() public payable {
-        (bool success, ) = address(this).call{value: 0.002 ether}("");
+        (bool success, ) = address(this).call{value: 0.001 ether}("");
         require(success, "Eth transfer failed");
     }
 
