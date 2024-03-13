@@ -4,8 +4,6 @@ out = "out"
 libs = ["lib"]
 optimizer = true
 optimizer_runs = 1000
-ignored_warnings_from = ["./src/20_Denial.sol", "./src/24_PuzzleWallet.sol", "./src/25_Motorbike.sol", "./src/7_Force.sol"]
-
 
 [rpc_endpoints]
 sepolia = "${SEPOLIA_RPC_URL}"
