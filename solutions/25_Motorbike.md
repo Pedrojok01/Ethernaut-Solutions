@@ -12,7 +12,7 @@
 - [Table of Contents](#table-of-contents)
 - [Objectif](#objectif)
 - [The hack](#the-hack)
-  - [Dencun upgrade](#dencun-upgrade)
+  - [Dencun upgrade (Feb 2024)](#dencun-upgrade-feb-2024)
   - [Old solution](#old-solution)
 - [Solution](#solution)
 - [Takeaway](#takeaway)
@@ -23,16 +23,16 @@
 
 ## The hack
 
-### Dencun upgrade
+### Dencun upgrade (Feb 2024)
 
-NOTE: The "old" solution for this challenge is not working anymore since the Dencun upgrade. The issue is with the new behavior of the `selfdestruct` opcode. See [EIP6780](https://eips.ethereum.org/EIPS/eip-6780).
+NOTE: The "old" solution for this challenge is not working anymore since the Dencun upgrade. The issue comes from the new behavior of the `selfdestruct` opcode which doesn't remove the contract's bytecode unless the contract is created AND self-destructed in the same transaction. See [EIP6780](https://eips.ethereum.org/EIPS/eip-6780).
 
 > <i>Contract Self Destructed, but was later reinitalized with new ByteCode</i>
 
 However, according to this github thread, it seems that it is still doable:
 https://github.com/OpenZeppelin/ethernaut/issues/701
 
-I will update this file if I crack it.
+I will update if I crack it. For information purposes, I have kept the old solution below.
 
 ### Old solution
 

