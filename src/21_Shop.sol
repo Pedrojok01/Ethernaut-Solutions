@@ -13,7 +13,7 @@ interface IShop {
 }
 
 contract Discount {
-    IShop shop;
+    IShop private immutable shop;
 
     constructor(address _shop) {
         shop = IShop(_shop);

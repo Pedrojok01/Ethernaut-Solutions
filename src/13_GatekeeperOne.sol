@@ -6,8 +6,8 @@ pragma solidity ^0.8.20;
  * @dev Make it past the gatekeeper and register as an entrant to pass this level.
  */
 
-contract LockPickingOne {
-    address private gateKeeper;
+contract GateSkipperOne {
+    address private immutable gateKeeper;
 
     constructor(address _gateKeeper) {
         gateKeeper = _gateKeeper;

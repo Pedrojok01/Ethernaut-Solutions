@@ -7,9 +7,13 @@ pragma solidity ^0.8.20;
  */
 
 contract Switcher {
-    address private switchContract = 0x71d674183F060C9819002181A2cDBa21520D17c2; // Replace with your Switch instance
+    address private immutable switchContract;
     bytes4 public onSelector = bytes4(keccak256("turnSwitchOn()"));
     bytes4 public offSelector = bytes4(keccak256("turnSwitchOff()"));
+
+    constructor(address _switchContract) {
+        switchContract = _switchContract;
+    }
 
     function toogle() public {
         // 1. Construct the calldata

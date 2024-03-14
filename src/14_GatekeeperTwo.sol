@@ -6,7 +6,7 @@ pragma solidity ^0.8.20;
  * @dev This gatekeeper introduces a few new challenges. Register as an entrant to pass this level.
  */
 
-contract LockPickingTwo {
+contract GateSkipperTwo {
     constructor(address _gateKeeperTwo) {
         attack(_gateKeeperTwo);
     }

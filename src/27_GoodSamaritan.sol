@@ -23,7 +23,7 @@ interface ICoin {
 }
 
 contract ThanksForTheNotif {
-    IGoodOldSama private goodOldSama;
+    IGoodOldSama private immutable goodOldSama;
     ICoin private coin;
     address private wallet;
 

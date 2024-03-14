@@ -87,7 +87,7 @@ We can now write our contract to pass the three gates:
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-contract LockPickingTwo {
+contract GateSkipperTwo {
     address private gateKeeperTwo;
 
     constructor(address _gateKeeperTwo) {

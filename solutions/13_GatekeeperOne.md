@@ -106,20 +106,20 @@ pragma solidity ^0.8.20;
 import "forge-std/Test.sol";
 import "forge-std/console.sol";
 
-import {LockPickingOne} from "src/13_GatekeeperOne.sol";
+import {GateSkipperOne} from "src/13_GatekeeperOne.sol";
 
 contract TestGateKeeperOne is Test {
-    LockPickingOne private lockPickingOne;
+    GateSkipperOne private gateSkipperOne;
 
     function setUp() public {
-        lockPickingOne = new LockPickingOne(
+        gateSkipperOne = new GateSkipperOne(
             0x3D47f75FdB928E3DC0206DC0Dc3470fF79A43fE2
         );
     }
 
     function test() public {
         for (uint256 i = 100; i < 8191; i++) {
-            try lockPickingOne.attack(i) {
+            try gateSkipperOne.attack(i) {
                 console.log("gas", i);
                 return;
             } catch {}
@@ -145,7 +145,7 @@ We now have everything we need to write our contract and call the `enter()` func
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-contract LockPickingOne {
+contract GateSkipperOne {
     address private gateKeeper;
 
     constructor(address _gateKeeper) {

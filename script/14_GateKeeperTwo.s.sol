@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 import {Script, console2} from "forge-std/Script.sol";
-import {LockPickingTwo} from "../src/14_GateKeeperTwo.sol";
+import {GateSkipperTwo} from "../src/14_GateKeeperTwo.sol";
 
 interface IGateKeeperTwo {
     function entrant() external view returns (address);
@@ -20,7 +20,7 @@ contract PoC is Script {
         uint256 deployer = vm.envUint("PRIVATE_KEY");
         vm.startBroadcast(deployer);
 
-        new LockPickingTwo(gateTwo);
+        new GateSkipperTwo(gateTwo);
         console2.log("Entrant: ", IGateKeeperTwo(gateTwo).entrant());
 
         vm.stopBroadcast();

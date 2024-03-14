@@ -11,7 +11,7 @@ interface IDenial {
 }
 
 contract Stop {
-    IDenial idenial;
+    IDenial private immutable idenial;
 
     constructor(address _denial) {
         idenial = IDenial(_denial);
