@@ -59,6 +59,6 @@ forge test -vvvv --fork-url $FORK_URL --match-path test/13_GateKeeperOne.test.so
 - [x] [Lvl 24 Puzzle Wallet](./solutions/24_PuzzleWallet.md)
 - [ ] [Lvl 25 Motorbike](./solutions/25_Motorbike.md) (unbeatable since Dencun upgrade, issue with selfdestruct new behavior, see EIP6780)
 - [x] [Lvl 26 Double Entry Point](./solutions/26_DoubleEntryPoint.md)
-- [x] [Lvl 27 Gate Keeper 3](./solutions/27_GateKeeperthree.md)
-- [x] [Lvl 28 Good Samaritan](./solutions/28_GoodSamaritan.md)
+- [x] [Lvl 27 Good Samaritan](./solutions/27_GoodSamaritan.md)
+- [x] [Lvl 28 Gate Keeper 3](./solutions/28_GateKeeperthree.md)
 - [x] [Lvl 29 Switch](./solutions/29_Switch.md)
