@@ -7,7 +7,7 @@
 
 </div>
 
-## Objectif
+## Goals
 
 No real objective here except to get familiar with the Ethernaut challenges and the contract interactions. This level is a simple introduction to the Ethernaut game.
 

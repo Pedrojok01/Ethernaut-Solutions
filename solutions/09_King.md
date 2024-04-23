@@ -6,17 +6,20 @@
 <h1><strong>Ethernaut Level 9 - King</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 9 - King](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-09-king)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
 - [Solution](#solution)
 - [Takeaway](#takeaway)
 - [References](#references)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/9-king-requirements.webp" width="800px"/>
 
@@ -69,7 +72,7 @@ contract FallenKing {
 Then, you can use forge scripts to deploy this contract and call the `attack` function:
 
 ```bash
-forge script script/9_King.s.sol:PoC --rpc-url sepolia --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY --watch
+forge script script/09_King.s.sol:PoC --rpc-url sepolia --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY --watch
 ```
 
 ## Takeaway

@@ -6,16 +6,19 @@
 <h1><strong>Ethernaut Level 20 - Denial</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 20 - Denial](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-20-denial)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
 - [Solution](#solution)
 - [Takeaway](#takeaway)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/20-denial-requirements.webp" width="800px"/>
 

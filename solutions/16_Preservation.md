@@ -6,16 +6,19 @@
 <h1><strong>Ethernaut Level 16 - Preservation</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 16 - Telephone](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-16-preservation)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
 - [Solution](#solution)
 - [Takeaway](#takeaway)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/16-preservation-requirements.webp" width="800px"/>
 

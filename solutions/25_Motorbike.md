@@ -6,18 +6,21 @@
 <h1><strong>Ethernaut Level 25 - Motorbike</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 25 - Motorbike](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-25-motorbike)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
   - [Dencun upgrade (Feb 2024)](#dencun-upgrade-feb-2024)
   - [Old solution](#old-solution)
 - [Solution](#solution)
 - [Takeaway](#takeaway)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/25-motorbike-requirements.webp" width="800px"/>
 

@@ -6,11 +6,14 @@
 <h1><strong>Ethernaut Level 29 - Switch</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 29 - Switch](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-29-switch)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
   - [Calldata encoding](#calldata-encoding)
   - [Custom calldata](#custom-calldata)
@@ -20,7 +23,7 @@
 - [Takeaway](#takeaway)
 - [Reference](#reference)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/29-switch-requirements.webp" width="800px"/>
 

@@ -6,16 +6,19 @@
 <h1><strong>Ethernaut Level 21 - Shop</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 21 - Shop](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-21-shop)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
 - [Solution](#solution)
 - [Takeaway](#takeaway)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/21-shop-requirements.webp" width="800px"/>
 

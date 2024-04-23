@@ -6,11 +6,14 @@
 <h1><strong>Ethernaut Level 15 - Naught Coin</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 15 - Telephone](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-15-naught-coin)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
 - [Solution](#solution)
   - [In the browser's console](#in-the-browsers-console)
@@ -18,7 +21,7 @@
 - [Takeaway](#takeaway)
 - [Reference](#reference)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/15-naught-requirements.webp" width="800px"/>
 
@@ -41,7 +44,7 @@ modifier lockTokens() {
 
 So it looks like we won't be able to use the `transfer()` function to transfer the tokens to another address. But in the ERC20 standard, there is also a `transferFrom()` function, which allows another address to execute a transfer on our behalf if approved.
 
-Since the `transferFrom()` function is not implemented in the NaughtCoin contract, its implementation will be the one defined in the OpenZeppelin contract. Without the `lockTokens` modifier.
+Since the `transferFrom()` function is not implemented in the NaughtCoin contract, its implementation will be the one defined in the OpenZeppelin contract, without the `lockTokens` modifier.
 
 In other words, we can use the `transferFrom()` function to transfer the tokens to another address without worrying about the time lock.
 
@@ -61,7 +64,7 @@ const balance = await contract.balanceOf(player);
 await contract.approve("TheFutureCoinOwner", balance);
 ```
 
-2.  Transfer the tokens to another address using the transferFrom function:
+3.  Transfer the tokens to another address using the transferFrom function:
 
 ```javascript
 await contract.transferFrom(player, "TheFutureCoinOwner", balance);
@@ -71,7 +74,7 @@ await contract.transferFrom(player, "TheFutureCoinOwner", balance);
 
 Edit the `futurCoinOwner` address in the `script/15_NaughtCoin.s.sol` file:
 
-```java
+```javascript
  address futurCoinOwner = "your wallet address here";
 ```
 

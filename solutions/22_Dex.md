@@ -6,17 +6,20 @@
 <h1><strong>Ethernaut Level 22 - Dex</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 22 - Dex](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-22-dex)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
 - [Solution](#solution)
 - [Takeaway](#takeaway)
 - [Reference](#reference)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/22-dex-requirements.webp" width="800px"/>
 
@@ -27,7 +30,32 @@ This CFAMM dex is a super simplified version of Uniswap V2. The price of an asse
 - The price of token1 in terms of token2 can be calculated like this: `y / x`.
 - The price of token2 in terms of token1 can be calculated like this: `x / y`.
 
-However, division is not safe in solidity as there is no floating point, so a lot of precautions must be taken when dealing with division. In this case, the precision loss will play in our favor. Let's start swapping some tokens around to see how.
+However, the `getSwapPrice()` function doesn't respect this `x * y = k` invariant because it does not adjust the balances post-swap to maintain the constant.
+
+```javascript
+function getSwapPrice(
+        address from,
+        address to,
+        uint amount
+    ) public view returns (uint) {
+        return ((amount * IERC20(to).balanceOf(address(this))) /
+            IERC20(from).balanceOf(address(this)));
+    }
+```
+
+The correct method to calculate the output amount for CFAMM swaps (such as in Uniswap) involves considering the liquidity fee and the resultant pool sizes after the swap.
+
+Let's start swapping some tokens around to see what happens.
+
+On our first trade, everything was fine. We traded 10 token1 for 10 token2. But is it fine? According to the the CFAMM, we have:
+
+- `100 token1 * 100 token2 = 10000 constant`
+
+On the next trade, we will now have:
+
+- `110 token1 * 90 token2 = 9460 constant`
+
+This is clearly breaking the invariant CF rule, and it will only get worse after each trade! We will be able to use that to our advantage... and wallet. On top of that, floating point are not accounted for.
 
 | Amount In | Reserves Token1 | Reserves Token2 | Amount Out | Qty token1 | Qty token2 |
 | --------- | --------------- | --------------- | ---------- | ---------- | ---------- |
@@ -39,11 +67,24 @@ However, division is not safe in solidity as there is no floating point, so a lo
 | 45        | 110             | 45              | 110        | 0          | 65         |
 |           | 0               | 90              |            | 110        | 20         |
 
-So on our first trade, everything was fine. We traded 10 token1 for 10 token2. But what happened on our second trade? According to the `getSwapPrice()` function, the calculation is the following:
+As shown in the table above, after a few trades, we will reach a point when we can calculate the exact amount of token2 to swap to entirely drain the reserves of token1.
 
-> Amount of token1 = (20 \* 110)/90 = 24.44
+Here is a corrected version of the getSwapPrice() function. However, understand that <b>this is simply for illustration only and shouldn't be used as such</b> as it does not account for fees nor floating-point arithmetic.
 
-But we got 24 token1. Because of the rounding, the law where `x * y` must always be equal to `k` is not respected anymore. This is a classic example of an oracle manipulation attack. Relying on a single source of truth, with a rounding error on top of it, will allow us to drain the contract in a few trades. As shown in the table above, we will reach a point when we can calculate the exact amount of token2 to swap to entirely drain the reserves of token1.
+```javascript
+function getSwapPrice(
+    address from,
+    address to,
+    uint amount
+) public view returns (uint) {
+    uint x = IERC20(from).balanceOf(address(this));
+    uint y = IERC20(to).balanceOf(address(this));
+    uint yPrime = x * y / (x + amount);
+    uint deltaY = y - yPrime;
+
+    return deltaY;
+}
+```
 
 ## Solution
 
@@ -117,9 +158,12 @@ You can run the script with the following command:
 forge script script/22_Dex.s.sol:PoC --rpc-url sepolia --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY --watch
 ```
 
+> Note that for more complex calculations, we could have used a fuzzer to try random values for us and get to the same conclusion.
+
 ## Takeaway
 
-- Always be careful when dealing with division in Solidity.
+- Always be careful when dealing with arithmetic and division in Solidity.
+- Fuzzer like Foundry & Echidna are your best friends to easily test all (most of) calculations edge cases.
 - Always use multiple sources of truth in your contracts (Chainlink and UniswapV3 TWAP are more reliable than UniswapV2).
 
 ## Reference

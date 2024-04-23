@@ -1,25 +1,28 @@
 <div align="center">
 <p align="left">(<a href="https://github.com/Pedrojok01/Ethernaut-Solutions?tab=readme-ov-file#solutions">back</a>)</p>
 
-<img src="../assets/levels/27-gate3.webp" width="600px"/>
+<img src="../assets/levels/28-gate3.webp" width="600px"/>
 <br><br>
-<h1><strong>Ethernaut Level 27 - Gate Keeper Three</strong></h1>
+<h1><strong>Ethernaut Level 28 - Gate Keeper Three</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 28 - Gate Keeper Three](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-28-gate-keeper-three)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
   - [Gate 1](#gate-1)
   - [Gate 2](#gate-2)
   - [Gate 3](#gate-3)
 - [Solution](#solution)
 
-## Objectif
+## Goals
 
-<img src="../assets/requirements/27-gate3-requirements.webp" width="800px"/>
+<img src="../assets/requirements/28-gate3-requirements.webp" width="800px"/>
 
 ## The hack
 

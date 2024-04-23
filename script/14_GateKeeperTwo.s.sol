@@ -8,10 +8,6 @@ interface IGateKeeperTwo {
     function entrant() external view returns (address);
 }
 
-/**
- * @notice Use the test to find the gas value that will pass the gatekeeper
- */
-
 contract PoC is Script {
     address private immutable gateTwo =
         0x9a8a9bAFCFaDe41A74808af3c3a7280615817Cf2; // Replace with your GateKeeperTwo instance

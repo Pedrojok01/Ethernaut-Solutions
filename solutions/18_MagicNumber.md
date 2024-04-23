@@ -6,21 +6,24 @@
 <h1><strong>Ethernaut Level 18 - Magic Number</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 18 - Magic Number](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-18-magic-number)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
+  - [Runtime bytecode](#runtime-bytecode)
   - [Creation bytecode](#creation-bytecode)
-  - [Creation bytecode](#creation-bytecode-1)
 - [Solution](#solution)
   - [In the browser's console](#in-the-browsers-console)
   - [With Foundry using `forge`:](#with-foundry-using-forge)
 - [Takeaway](#takeaway)
 - [Reference](#reference)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/18-magicNumber-requirements.webp" width="800px"/>
 
@@ -52,7 +55,7 @@ In bytecode, this is the equivalent of:
 
 The creation bytecode is the first thing that gets executed when deploying a contract. It is in charge of deploying the contract and returning the runtime bytecode. This is why we will start with the runtime bytecode.
 
-### Creation bytecode
+### Runtime bytecode
 
 The absolute minimal setup for this contract to return the number 42 would be the following:
 

@@ -6,18 +6,21 @@
 <h1><strong>Ethernaut Level 24 - Puzzle Wallet</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 24 - Puzzle Wallet](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-24-puzzle-wallet)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
   - [Become the owner of the PuzzleWallet contract](#become-the-owner-of-the-puzzlewallet-contract)
   - [Drain the contract](#drain-the-contract)
 - [Solution](#solution)
 - [Takeaway](#takeaway)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/24-puzzle-requirements.webp" width="800px"/>
 

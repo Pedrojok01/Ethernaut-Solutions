@@ -6,16 +6,19 @@
 <h1><strong>Ethernaut Level 2 - Fallout</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 2 - Fal1out](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-02-fallout)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
 - [Solution](#solution)
 - [Takeaway](#takeaway)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/2-fallout-requirements.webp" width="800px"/>
 

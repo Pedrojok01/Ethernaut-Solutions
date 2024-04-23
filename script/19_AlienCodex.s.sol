@@ -20,7 +20,6 @@ contract PoC is Script {
 
         new AlienDecodex(alienCodex);
         address alienOwner = IAlienCodex(alienCodex).owner();
-        require(alienOwner == msg.sender, "Decodex failed!");
 
         console2.log("New owner: ", alienOwner);
 

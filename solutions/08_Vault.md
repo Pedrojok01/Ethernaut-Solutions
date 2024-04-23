@@ -6,11 +6,14 @@
 <h1><strong>Ethernaut Level 8 - Vault</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 8 - Vault](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-08-vault)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
   - [Storage (Static types)](#storage-static-types)
   - [Reading the storage](#reading-the-storage)
@@ -20,19 +23,19 @@
 - [Takeaway](#takeaway)
 - [References](#references)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/8-vault-requirements.webp" width="800px"/>
 
 ## The hack
 
-It requires an understanding of how storage works in solidity (usage of 32 bytes sized slots) and the JSON RPC function `eth_getStorageAt`.
+It requires an understanding of how storage works in solidity (usage of 32-byte sized slots) and the JSON RPC function `eth_getStorageAt`.
 
 ### Storage (Static types)
 
-EVM stores data in 32 bytes slots. The first state variable is stored at slot 0. If there are enough bytes left, the next variable is also stored at slot 0, otherwise at slot 1, and so on.
+EVM stores data in 32-byte slots. The first state variable is stored at slot 0. If there are enough bytes left, the next variable is also stored at slot 0, otherwise at slot 1, and so on.
 
-> NOTE: Dynamic types like arrays and strings are differents and don't work the same way. But this is for another level...
+> NOTE: Dynamic types like arrays and strings are different and don't work the same way. But this is for another level...
 
 In the Vault contract, `locked` is a boolean and uses 1 bytes. The slot 0 has 31 bytes of unused storage. `password` is a bytes32 and uses 32 bytes. Since it doesn't fit in the 31 bytes left in slot 0, it is stored at slot 1.
 

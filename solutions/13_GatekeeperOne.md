@@ -6,11 +6,14 @@
 <h1><strong>Ethernaut Level 13 - Gate Keeper One</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 13 - Gate Keeper One](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-13-gate-keeper-one)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
   - [Modifier 1](#modifier-1)
   - [Modifier 3](#modifier-3)
@@ -18,7 +21,7 @@
 - [Solution](#solution)
 - [Takeaway](#takeaway)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/13-gate1-requirements.webp" width="800px"/>
 
@@ -78,7 +81,7 @@ function _constructGateKey() private view returns (bytes8 gateKey) {
         // Get the last 16 bits of tx.origin by converting it to uint160 and then to uint16
         uint16 ls16BitsTxOrigin = uint16(uint160(tx.origin));
         // Concatenate the last 16 bits with 0x0001000000000000
-        // Where 0x0001000000000000 is a bunch of 0 with an arbitraty 1 somewhere
+        // Where 0x0001000000000000 is a bunch of 0 with an arbitrary 1 somewhere
         // so the first 32 bits differ from each other;
         // The bitwise OR operator is used to combine the two numbers;
         // The result is cast to bytes8;

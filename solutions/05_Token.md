@@ -6,17 +6,20 @@
 <h1><strong>Ethernaut Level 5 - Token</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 5 - Token](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-05-token)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
   - [Examples](#examples)
 - [Solution](#solution)
 - [Takeaway](#takeaway)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/5-token-requirements.webp" width="800px"/>
 

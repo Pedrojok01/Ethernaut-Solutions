@@ -6,17 +6,20 @@
 <h1><strong>Ethernaut Level 10 - Reentrancy</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 10 - Reentrancy](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-10-reentrancy)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
 - [Solution](#solution)
 - [Takeaway](#takeaway)
 - [Reference](#reference)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/10-reentrancy-requirements.webp" width="800px"/>
 

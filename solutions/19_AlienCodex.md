@@ -6,11 +6,14 @@
 <h1><strong>Ethernaut Level 19 - Alien Codex</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 19 - Alien Codex](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-19-alien-codex)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
   - [1. Codex array underflow](#1-codex-array-underflow)
   - [2. Owner override](#2-owner-override)
@@ -18,7 +21,7 @@
 - [Takeaway](#takeaway)
 - [Reference](#reference)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/19-alien-requirements.webp" width="800px"/>
 
@@ -133,7 +136,6 @@ forge script script/19_AlienCodex.s.sol:PoC --rpc-url sepolia --broadcast --veri
 
 - Underflow and overflow are not limited to the token's balances!
 - Using `.length--` on an empty array causes an underflow and sets its length to 2\*\*256-1.
--
 
 ## Reference
 

@@ -6,18 +6,21 @@
 <h1><strong>Ethernaut Level 4 - Telephone</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 4 - Telephone](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-04-telephone)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
   - [Example Explanation](#example-explanation)
 - [Solution](#solution)
 - [Takeaway](#takeaway)
 - [Reference:](#reference)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/4-telephone-requirements.webp" width="800px"/>
 

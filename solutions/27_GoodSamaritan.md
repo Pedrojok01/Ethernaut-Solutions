@@ -1,21 +1,24 @@
 <div align="center">
 <p align="left">(<a href="https://github.com/Pedrojok01/Ethernaut-Solutions?tab=readme-ov-file#solutions">back</a>)</p>
 
-<img src="../assets/levels/28-goodSama.webp" width="600px"/>
+<img src="../assets/levels/27-goodSama.webp" width="600px"/>
 <br><br>
-<h1><strong>Ethernaut Level 28 - Good Samaritan</strong></h1>
+<h1><strong>Ethernaut Level 27 - Good Samaritan</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 27 - Good Samaritan](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-27-good-samaritan)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
 - [Solution](#solution)
 - [Takeaway](#takeaway)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/28-goodSama-requirements.webp" width="800px"/>
 

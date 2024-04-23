@@ -12,8 +12,6 @@ interface ISimpleToken {
     function destroy(address to) external;
 }
 
-interface IRecovery {}
-
 contract RecoveryService {
     address private immutable recovery;
 

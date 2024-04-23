@@ -6,17 +6,20 @@
 <h1><strong>Ethernaut Level 17 - Recovery</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 17 - Recovery](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-17-recovery)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
 - [Solution](#solution)
 - [Takeaway](#takeaway)
 - [Reference](#reference)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/17-recovery-requirements.webp" width="800px"/>
 
@@ -64,8 +67,6 @@ pragma solidity ^0.8.20;
 interface ISimpleToken {
     function destroy(address to) external;
 }
-
-interface IRecovery {}
 
 contract RecoveryService {
     address private immutable recovery;

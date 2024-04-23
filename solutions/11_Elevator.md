@@ -6,16 +6,19 @@
 <h1><strong>Ethernaut Level 11 - Elevator</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 11 - Elevator](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-11-elevator)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
 - [Solution](#solution)
 - [Takeaway](#takeaway)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/11-elevator-requirements.webp" width="800px"/>
 

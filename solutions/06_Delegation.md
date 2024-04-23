@@ -6,18 +6,21 @@
 <h1><strong>Ethernaut Level 6 - Delegation</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 6 - Delegation](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-06-delegation)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
   - [Example](#example)
 - [Solution](#solution)
 - [Takeaway](#takeaway)
 - [Reference](#reference)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/6-delegation-requirements.webp" width="800px"/>
 

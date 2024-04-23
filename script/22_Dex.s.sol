@@ -16,6 +16,7 @@ interface IDex {
 }
 
 contract PoC is Script {
+    // Replace with your Dex instance
     IDex dex = IDex(0x98E7fF2DfFF412D7E9e03A51AE0f63f9e983C3cE);
 
     function run() external {

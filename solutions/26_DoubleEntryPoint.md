@@ -6,11 +6,14 @@
 <h1><strong>Ethernaut Level 26 - Double Entry Point</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 26 - Double Entry Point](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-26-double-entry-point)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
   - [Find the bug](#find-the-bug)
   - [Implement the Forta bot](#implement-the-forta-bot)
@@ -18,7 +21,7 @@
 - [Takeaway](#takeaway)
 - [Reference](#reference)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/26-doubleEntry-requirements.webp" width="800px"/>
 

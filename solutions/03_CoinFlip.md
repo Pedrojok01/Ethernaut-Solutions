@@ -6,8 +6,19 @@
 <h1><strong>Ethernaut Level 3 - Coinflip</strong></h1>
 
 </div>
+<br>
 
-## Objectif
+Read the article directly on my blog: [Ethernaut Solutions | Level 3 - CoinFlip](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-03-coinflip)
+
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Goals](#goals)
+- [The hack](#the-hack)
+- [Solution](#solution)
+- [Takeaway](#takeaway)
+
+## Goals
 
 <img src="../assets/requirements/3-coinflip-requirements.webp" width="800px"/>
 

@@ -6,16 +6,19 @@
 <h1><strong>Ethernaut Level 23 - Dex Two</strong></h1>
 
 </div>
+<br>
+
+Read the article directly on my blog: [Ethernaut Solutions | Level 23 - Dex Two](https://blog.pedrojok.com/the-ethernaut-ctf-solutions-23-dex-two)
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Objectif](#objectif)
+- [Goals](#goals)
 - [The hack](#the-hack)
 - [Solution](#solution)
 - [Takeaway](#takeaway)
 
-## Objectif
+## Goals
 
 <img src="../assets/requirements/23-dexTwo-requirements.webp" width="800px"/>
 
@@ -38,8 +41,7 @@ function swap(address from, address to, uint amount) public {
 The following requirement has been removed:
 
 ```javascript
-require((from == token1 && to == token2) ||
-  (from == token2 && to == token1), "Invalid tokens");
+require((from == token1 && to == token2) || (from == token2 && to == token1), "Invalid tokens");
 ```
 
 So basically, the contract is no longer validating the tokens that are being swapped. This means that we can swap any token for any other token, and the contract will not complain. Good for us! This is a huge vulnerability, and we can use it to drain the reserves of both tokens very easily, and for free :)
