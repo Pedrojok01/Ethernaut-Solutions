@@ -26,10 +26,8 @@ contract PoC is Script {
         DexterTwo dexterTwo = new DexterTwo(address(dexTwo));
         // 2. Deploy our FreeToken contract
         FreeToken freeToken = new FreeToken(address(dexterTwo));
-
         // 3. Set address of FreeToken inside DexterTwo
         dexterTwo.setFreeToken(address(freeToken));
-
         // 4. Call the attack function
         dexterTwo.attack();
 
