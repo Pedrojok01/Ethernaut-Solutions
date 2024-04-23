@@ -4,22 +4,6 @@ pragma solidity ^0.8.20;
 import {Script, console2} from "forge-std/Script.sol";
 import {Puzzled} from "../src/24_PuzzleWallet.sol";
 
-interface IPuzzled {
-    function addToWhitelist(address addr) external;
-
-    function deposit() external payable;
-
-    function multicall(bytes[] calldata data) external payable;
-
-    function execute(
-        address to,
-        uint256 value,
-        bytes calldata data
-    ) external payable;
-
-    function setMaxBalance(uint256 _maxBalance) external;
-}
-
 interface IPuzzleWallet {
     function admin() external view returns (address);
 }

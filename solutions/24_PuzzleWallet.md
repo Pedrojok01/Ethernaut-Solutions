@@ -80,7 +80,7 @@ function setMaxBalance(uint256 _maxBalance) external onlyWhitelisted {
 While we can call the `setMaxBalance()` function, we are still stuck because of the `require` statement, as the contract's balance is not empty. So we have to drain the contract somehow.
 
 - The `deposit()` function allows us to deposit an amount to our balance.
-- The `execute()` function allows us to withdraw an amount from our balance, but it also make sure that we have enough funds to withdraw:
+- The `execute()` function allows us to withdraw an amount from our balance, but it also makes sure that we have enough funds to withdraw:
 
 ```javascript
 require(balances[msg.sender] >= value, "Insufficient balance");
@@ -109,7 +109,7 @@ function multicall(bytes[] calldata data) external payable onlyWhitelisted {
 ```
 
 This function is `payable` and allows us to call any function we want, which is good. So we could multicall the `deposit()` function twice, re-using `msg.value` for the second call, thanks to how `delegatecall` works.
-Unfortunately, the `depositCalled` boolean prevents exactly this. The `deposit()` function can only be called once. But what if we nest the second `deposit()` call within another `multicall()`?
+Unfortunately, the `depositCalled` boolean prevents exactly this. The `deposit()` function can only be called once. But what if we nest a second `deposit()` call within a second `multicall()`?
 
 To try to illustrate the idea, that would give something like this:
 
@@ -184,6 +184,9 @@ forge script script/24_PuzzleWallet.s.sol:PoC --rpc-url sepolia --broadcast --ve
 ```
 
 ## Takeaway
+
+- Always double check you storage layout to prevent any collision.
+- Make sure critical logic is protected with an access control mechanism.
 
 <div align="center">
 <br>
