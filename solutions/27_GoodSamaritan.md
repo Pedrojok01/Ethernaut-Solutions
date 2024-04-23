@@ -20,7 +20,7 @@ Read the article directly on my blog: [Ethernaut Solutions | Level 27 - Good Sam
 
 ## Goals
 
-<img src="../assets/requirements/28-goodSama-requirements.webp" width="800px"/>
+<img src="../assets/requirements/27-goodSama-requirements.webp" width="800px"/>
 
 ## The hack
 
