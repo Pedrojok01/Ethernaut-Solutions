@@ -128,7 +128,7 @@ cast sig "turnSwitchOff()"
 Now, why is the `onlyOff` modifier targetting the position 68?
 
 - The first 4 bytes are the function selector;
-- The next 64 bytes are the offset of the data;
+- The next 64 bytes are the offset and the length of the data;
 
 So the data, which is the function selector, starts at the 68th byte. What if we play with the offset and tell the function that the data starts at position 96 instead?
 
