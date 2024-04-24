@@ -76,13 +76,13 @@ We know that each solidity types are stored in its hex form, padded with zeros t
 > uint256 `20` is `0x14` in hex, and would be stored like this:
 > `0x0000000000000000000000000000000000000000000000000000000000000014`
 
-For dynamic types, it is a bit different and solidity stores them as follow:
+For dynamic types, it is a bit different and solidity stores them as follows:
 
 - first 32-byte is the offset of the data;
 - next 32-byte is the length of the data;
 - next are the data themselves.
 
-Let's take the following array: `uint256[] memory data = [2, 3, 5, 7, 11]`. It would be stored as follow:
+Let's take the following array: `uint256[] memory data = [2, 3, 5, 7, 11]`. It would be stored as follows:
 
 ```java
 offset:
@@ -156,7 +156,7 @@ And here is the output:
 
 > 0x30c13ade0000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000000020606e1500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000476227e1200000000000000000000000000000000000000000000000000000000
 
-The `turnSwitchOn()` function selector is positionned at position 68, however, it is not relevant anymore as we are telling the function that the data starts at position 96 instead!
+The `turnSwitchOn()` function selector is positioned at position 68, however, it is not relevant anymore as we are telling the function that the data starts at position 96 instead!
 We can finally call the `flipSwitch()` function to toggle the switch on!
 
 ## Solution
