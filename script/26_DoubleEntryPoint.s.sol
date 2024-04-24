@@ -25,7 +25,6 @@ contract PoC is Script {
 
         address cryptoVault = doubleEntryPoint.cryptoVault();
         AlertBot alertBot = new AlertBot(cryptoVault);
-
         doubleEntryPoint.forta().setDetectionBot(address(alertBot));
 
         vm.stopBroadcast();

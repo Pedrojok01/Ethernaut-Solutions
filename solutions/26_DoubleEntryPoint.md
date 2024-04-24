@@ -133,10 +133,9 @@ So to access the `origSender` variable, we need to understand how a calldata is 
 | 0x24     | 32           | uint256 | Offset of `msgData`               |
 | 0x44     | 32           | uint256 | Length of `msgData`               |
 | 0x64     | 4            | bytes4  | selector of `delegateTransfer()`  |
-| 0x28     | 32           | address | `to` address                      |
+| 0x68     | 32           | address | `to` address                      |
 | 0x88     | 32           | uint256 | `value` parameter                 |
 | 0xa8     | 32           | address | => `origSender` address <=        |
-| 0xc8     | 28           | bytes   | zero-padding                      |
 
 We can use a bit of assembly to access the `origSender` variable:
 
