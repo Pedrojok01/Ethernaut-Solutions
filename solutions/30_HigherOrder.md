@@ -1,7 +1,7 @@
 <div align="center">
 <p align="left">(<a href="https://github.com/Pedrojok01/Ethernaut-Solutions?tab=readme-ov-file#solutions">back</a>)</p>
 
-<img src="../assets/levels/30-higherorder.webp" width="600px"/>
+<img src="../assets/levels/30-higherOrder.webp" width="600px"/>
 <br><br>
 <h1><strong>Ethernaut Level 30 - Higher Order</strong></h1>
 
