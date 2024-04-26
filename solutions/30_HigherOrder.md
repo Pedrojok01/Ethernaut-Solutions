@@ -154,6 +154,12 @@ await sendTransaction({
 });
 ```
 
+Then you can claim the leadership:
+
+```javascript
+await contract.claimLeadership();
+```
+
 ## Takeaway
 
 - Interfaces provide valuable type-checks when calling functions from other contracts.
