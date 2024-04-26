@@ -199,7 +199,7 @@ contract Switcher {
 The command to run the script:
 
 ```bash
-forge script script/29_Switch.s.sol:PoC --rpc-url sepolia --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY --watch
+forge script script/29_Switch.s.sol:PoC --rpc-url sepolia --broadcast --watch
 ```
 
 ## Takeaway

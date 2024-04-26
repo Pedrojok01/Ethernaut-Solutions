@@ -125,7 +125,7 @@ contract DexterTwo {
 You can run the script with the following command:
 
 ```bash
-forge script script/23_DexTwo.s.sol:PoC --rpc-url sepolia --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY --watch
+forge script script/23_DexTwo.s.sol:PoC --rpc-url sepolia --broadcast --watch
 ```
 
 ## Takeaway

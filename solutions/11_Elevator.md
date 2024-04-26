@@ -78,7 +78,7 @@ contract StairwayToHeaven {
 Then, you can use forge scripts to deploy the contract and call the `attack` function with the floor you want to go to.
 
 ```bash
-forge script script/11_Elevator.s.sol:PoC --rpc-url sepolia --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY --watch
+forge script script/11_Elevator.s.sol:PoC --rpc-url sepolia --broadcast --watch
 ```
 
 ## Takeaway

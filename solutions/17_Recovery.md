@@ -91,7 +91,7 @@ contract RecoveryService {
 You can use the following command to run the forge script:
 
 ```bash
-forge script script/17_Recovery.s.sol:PoC --rpc-url sepolia --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY --watch
+forge script script/17_Recovery.s.sol:PoC --rpc-url sepolia --broadcast --watch
 ```
 
 ## Takeaway

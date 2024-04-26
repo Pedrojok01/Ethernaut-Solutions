@@ -149,7 +149,7 @@ contract ThanksForTheNotif {
 The command to run the script:
 
 ```bash
-forge script script/27_GoodSamaritan.s.sol:PoC --rpc-url sepolia --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY --watch
+forge script script/27_GoodSamaritan.s.sol:PoC --rpc-url sepolia --broadcast --watch
 ```
 
 ## Takeaway

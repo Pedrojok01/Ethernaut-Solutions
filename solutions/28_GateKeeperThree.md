@@ -132,7 +132,7 @@ contract GateSkipperThree {
 Then you can run the script with the following command:
 
 ```bash
-forge script script/28_GateKeeperThree.s.sol:PoC --rpc-url sepolia --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY --watch
+forge script script/28_GateKeeperThree.s.sol:PoC --rpc-url sepolia --broadcast --watch
 ```
 
 <div align="center">

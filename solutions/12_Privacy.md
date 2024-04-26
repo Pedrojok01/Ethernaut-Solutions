@@ -90,7 +90,7 @@ await contract.unlock(key);
 You can also achieve the same with Foundry by using the `vm.load` function. To run the script:
 
 ```bash
-forge script script/12_Privacy.s.sol:PoC --rpc-url sepolia --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY --watch
+forge script script/12_Privacy.s.sol:PoC --rpc-url sepolia --broadcast --watch
 ```
 
 Done.

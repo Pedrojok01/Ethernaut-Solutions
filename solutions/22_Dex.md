@@ -155,7 +155,7 @@ The required steps are the following:
 You can run the script with the following command:
 
 ```bash
-forge script script/22_Dex.s.sol:PoC --rpc-url sepolia --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY --watch
+forge script script/22_Dex.s.sol:PoC --rpc-url sepolia --broadcast --watch
 ```
 
 > Note that for more complex calculations, we could have used a fuzzer to try random values for us and get to the same conclusion.

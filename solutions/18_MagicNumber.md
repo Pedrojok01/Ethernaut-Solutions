@@ -140,7 +140,7 @@ interface IMeaningOfLife {
 You can use the following command:
 
 ```bash
-forge script script/18_MagicNumber.s.sol:PoC --rpc-url sepolia --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY --watch
+forge script script/18_MagicNumber.s.sol:PoC --rpc-url sepolia --broadcast --watch
 ```
 
 And that's it! We have successfully deployed the contract and solved the level.

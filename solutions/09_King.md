@@ -72,7 +72,7 @@ contract FallenKing {
 Then, you can use forge scripts to deploy this contract and call the `attack` function:
 
 ```bash
-forge script script/09_King.s.sol:PoC --rpc-url sepolia --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY --watch
+forge script script/09_King.s.sol:PoC --rpc-url sepolia --broadcast --watch
 ```
 
 ## Takeaway

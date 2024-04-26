@@ -81,7 +81,7 @@ Edit the `futurCoinOwner` address in the `script/15_NaughtCoin.s.sol` file:
 Then run the script:
 
 ```bash
-forge script script/15_NaughtCoin.s.sol:PoC --rpc-url sepolia --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY --watch
+forge script script/15_NaughtCoin.s.sol:PoC --rpc-url sepolia --broadcast --watch
 ```
 
 ## Takeaway

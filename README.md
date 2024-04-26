@@ -63,4 +63,4 @@ forge test -vvvv --fork-url $FORK_URL --match-path test/13_GateKeeperOne.test.so
 - [x] [Lvl 28 Gate Keeper 3](./solutions/28_GateKeeperThree.md)
 - [x] [Lvl 29 Switch](./solutions/29_Switch.md)
 - [x] [Lvl 30 Higher Order](./solutions/30_HigherOrder.md)
-- [ ] [Lvl 31 Stake](./solutions/31_Stake.md)
+- [x] [Lvl 31 Stake](./solutions/31_Stake.md)

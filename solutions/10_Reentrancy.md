@@ -109,7 +109,7 @@ contract Reentered {
 Then, you can use forge scripts to deploy this contract and call the `attack` function:
 
 ```bash
-forge script script/10_Reentrancy.s.sol:PoC --rpc-url sepolia --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY --watch
+forge script script/10_Reentrancy.s.sol:PoC --rpc-url sepolia --broadcast --watch
 ```
 
 > Note: Since the contract starts with `0.001 ether`, leaving its balance at 0 is fairly simple. For a more "realistic" approach, you would have to improve the calculation's method to drain the contract's balance entirely.
